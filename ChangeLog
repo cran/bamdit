@@ -1,0 +1,11 @@
+BAMDIT ChangeLog
+
+Version 1.0-1 	-- 2011-08-09
+	* Nothing has to be written to disk anymore.
+	* Models are compiled / adapted now with "first of three" 
+	  due to an issue where sometimes models don't adapt.
+	* Added ChangeLog
+	* Corrected model adaption process from three to two stages
+		
+Version 1.0		-- 2011-08-07
+	* Initial release

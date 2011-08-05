@@ -32,20 +32,38 @@ metadiag <- function(	data,
   pre.mu=pre.mu)
 	
 	# say the user that we writing the model
-	if (verbose) .println("Writing model...")
+#	if (verbose) .println("Generating model blueprint ...")
 	
-	# write the bugs model:
-	.write.bugs.model(re,link)
-	if(!.check.params(re,link))
-    .throw("The model you requested (",re,", ",link,") was not implemented yet.")
+
+
+	# It's done
+#	if (verbose) .println("Done.")
 	
-	# say the user that we are checking the model
-	if (verbose) .println("Compiling model...")
-	
-	# Check the Model ...
-	m <- jags.model(.in.tmp("bamdit-model.bug"),
-	                 data = data,
-	                 n.chains = 3)
+	# Fit the Model the Model ...
+	# ... or die!
+	# set tries
+	tries <- 3
+	for (i in 1:tries){
+		# say the user that we are checking the model
+		if (verbose) .println("Trying to fit model in ",n.burnin," iterations ...")
+		# try to make the model
+		# get the handler
+		blueprint = .model.handler(re,link)
+		model <- jags.model(blueprint, n.adapt = n.burnin,
+	                 	data = data,
+	                 	n.chains = 3)
+		close(blueprint)
+		# if the model doesn't complete adaption
+		if (.Call("is_adapting",model$ptr(),PACKAGE="rjags")){
+			# if we are out of tries
+			if (i < tries){
+				if (verbose) .println("The model failed to adapt. I'll try to fix this myself, please stay put ...")
+			} else {
+				# bring this unnessery tradgedy to its end
+				.throw("The model failed to adapt three times. I'm not able to fix this myself. Please try to set n.iter and n.burnin parameters to higher values and retry yourself.\n")
+			}
+		} else break
+	}
 	
 	# Nodes to monitor ...
 	modelPar <- c("pool.se", "pool.sp",
@@ -53,20 +71,14 @@ metadiag <- function(	data,
 	               "mu", "sigmaD", "sigmaS",
 	               "rhoDS")
 
-	# Say that we are doing the burn-in
-	if (verbose) .println(paste("Running ",n.burnin," MCMC iterations to get convergency...",sep=""))
-
-	# Run MCMC itereations to get convergence...
-	x <- jags.samples(m, modelPar, n.iter = n.burnin, thin=n.thin)
-
 	# Say something smart
-	if (verbose) .println("Obtaining statistics of ",n.iter - n.burnin," samples of monitored nodes...")
+	if (verbose) .println("Completed fitting. Obtaining statistics of ",n.iter - n.burnin," samples of monitored nodes...")
 
 	# Update the MCMC iterations and coerces the output to a single mcmc.list object 
-	x.out <- coda.samples(m, modelPar, n.iter = (n.iter - n.burnin), thin=(n.thin/2))
+	x.out <- coda.samples(model, modelPar, n.iter = (n.iter - n.burnin), thin=n.thin)
 	
 	# clean up											
-	rm(data,R,n,tp,n1,fp,n2,m,modelPar,x)
+	rm(data,R,n,tp,n1,fp,n2,model,modelPar)
 	
 	return(x.out)
 }

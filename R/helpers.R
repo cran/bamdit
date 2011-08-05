@@ -3,7 +3,7 @@
 
 # println
 .println <- function(...){
-	cat(paste(list(...),"\n",sep=""))
+	cat(paste(list(...),sep=""),"\n")
 }
 
 # throw an error to users face!
