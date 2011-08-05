@@ -1,0 +1,15 @@
+af1f8be69ded3b70052af87ea9b51830 *DESCRIPTION
+df76739a70f7798f93bcda118a00514c *NAMESPACE
+e468873964db7bbd0d7190b57999e7ff *R/bamdit.plot.R
+5196d8e8eae0d29962cd2485f1e36bf2 *R/helpers.R
+53fab03cde2178a0486fc77a8c9b6dd7 *R/metadiag.R
+a995e17cf2ee542a3e1c3bf7072dfe85 *R/read.RevMgr.R
+79718fc33a75603d825b179d8dc20f79 *R/write.bugs.model.R
+70c4a5ca241a0923a24f34e24a79edd0 *data/ct.rda
+5825a8c37261a71ec28e0c9fc05bccd3 *data/mri.rda
+1efa859b931a3b12026b3823a1167846 *man/bamdit-package.Rd
+bd6ad3ecf6e97afd79618ac4b108677c *man/bamdit.plot.Rd
+8fa0d4b848047121a15c9d5cf862378b *man/ct.Rd
+f1d17b458cee636dbb7d726f70c876e3 *man/metadiag.Rd
+c5640ad6ccfdeace3d8ad8d7c8594b27 *man/mri.Rd
+287ef78294971ccb00e0f382e5b08e76 *man/read.RevMan.Rd

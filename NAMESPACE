@@ -1,0 +1,2 @@
+# all variables not starting with a period are going to be exported
+exportPattern("^[^\\.]")
