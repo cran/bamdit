@@ -60,17 +60,22 @@ metadiag <- function(	data,
 				if (verbose) .println("The model failed to adapt. I'll try to fix this myself, please stay put ...")
 			} else {
 				# bring this unnessery tradgedy to its end
-				.throw("The model failed to adapt three times. I'm not able to fix this myself. Please try to set n.iter and n.burnin parameters to higher values and retry yourself.\n")
+				.throw("The model failed to adapt three times. I'm not able to fix this myself. Please try to change hyper-parameters values or to set n.iter and n.burnin parameters to higher values and retry yourself.\n")
 			}
 		} else break
 	}
 	
 	# Nodes to monitor ...
+	
 	modelPar <- c("pool.se", "pool.sp",
 	               "new.se", "new.sp",
 	               "mu", "sigmaD", "sigmaS",
 	               "rhoDS")
-
+ 
+ # This take the weights too as parameters to return.
+  if(re=="scalemix") modelPar <- c(modelPar, "w")
+  
+  
 	# Say something smart
 	if (verbose) .println("Completed fitting. Obtaining statistics of ",n.iter - n.burnin," samples of monitored nodes...")
 

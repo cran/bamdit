@@ -1,5 +1,10 @@
 BAMDIT ChangeLog
 
+Version 1.1 	-- 2011-08-30
+	* Weights are return from the bamdit function 
+    when random effects are scale mixed.
+  * Change warning messages when model fails to adapt in JAGS.
+	
 Version 1.0-1 	-- 2011-08-09
 	* Nothing has to be written to disk anymore.
 	* Models are compiled / adapted now with "first of three" 

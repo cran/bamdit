@@ -1,8 +1,8 @@
 Package: bamdit
 Type: Package
 Title: Bayesian Meta-Analysis of diagnostic test data
-Version: 1.0-1
-Date: 2011-08-05
+Version: 1.1
+Date: 2011-08-30
 Author: Dr. Pablo Emilio Verde <pabloemilio.verde@uni-duesseldorf.de> &
         Arnold Sykosch <arnold.sykosch@uni-duesseldorf.de>
 Maintainer: Dr. Pablo Emilio Verde
@@ -17,6 +17,6 @@ Description: Bayesian meta-analysis of diagnostic test data based on a
         models departures from observed data.
 License: GPL-3
 LazyLoad: yes
-Packaged: 2011-08-09 00:10:48 UTC; unausgeschlafen
+Packaged: 2011-08-30 13:17:58 UTC; vep
 Repository: CRAN
-Date/Publication: 2011-08-18 15:08:33
+Date/Publication: 2011-08-30 19:44:09

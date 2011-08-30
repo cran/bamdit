@@ -12,8 +12,8 @@ Bayesian meta-analysis of diagnostic test data based on a scale mixtures bivaria
 \tabular{ll}{
 Package: \tab bamdit\cr
 Type: \tab Package\cr
-Version: \tab 1.0-1\cr
-Date: \tab 2011-08-05 \cr
+Version: \tab 1.1\cr
+Date: \tab 2011-08-30 \cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
