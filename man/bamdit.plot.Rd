@@ -18,7 +18,9 @@ bamdit.plot(model,data=NULL,S=200)
 }
 \examples{
 ## execute analysis
+\dontrun{
 data(mri)
 bamdit.plot(model=metadiag(mri),data=mri)
+}
 }
 \keyword{file}

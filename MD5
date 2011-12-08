@@ -1,5 +1,5 @@
-e56c7152441883a794f13944ecd8efe2 *ChangeLog
-acfc4e31be807e021977cbf0ec8d456f *DESCRIPTION
+33d26f87b96c93c67faa2a22033fd218 *ChangeLog
+944d52393cc1d189d7a531c052784084 *DESCRIPTION
 df76739a70f7798f93bcda118a00514c *NAMESPACE
 e468873964db7bbd0d7190b57999e7ff *R/bamdit.plot.R
 6d235e16a27ad7a72991e01c43bb3c25 *R/helpers.R
@@ -8,9 +8,9 @@ e468873964db7bbd0d7190b57999e7ff *R/bamdit.plot.R
 a995e17cf2ee542a3e1c3bf7072dfe85 *R/read.RevMgr.R
 70c4a5ca241a0923a24f34e24a79edd0 *data/ct.rda
 5825a8c37261a71ec28e0c9fc05bccd3 *data/mri.rda
-f2e5ec640fb0fd38bb83e7ad75e124e3 *man/bamdit-package.Rd
-bd6ad3ecf6e97afd79618ac4b108677c *man/bamdit.plot.Rd
+eca61ec680bff1436319ce41a90ddc08 *man/bamdit-package.Rd
+a7a63814f3dc9e245a06cdf7f2c53b10 *man/bamdit.plot.Rd
 8fa0d4b848047121a15c9d5cf862378b *man/ct.Rd
-f1d17b458cee636dbb7d726f70c876e3 *man/metadiag.Rd
+14f2021e14a6961351c1ccc15d57bed8 *man/metadiag.Rd
 c5640ad6ccfdeace3d8ad8d7c8594b27 *man/mri.Rd
 287ef78294971ccb00e0f382e5b08e76 *man/read.RevMan.Rd

@@ -37,9 +37,11 @@ n.thin = 10, verbose = TRUE)
 
 \examples{
 ## execute analysis
+\dontrun{
 data(mri)
 mri
 md <- metadiag(mri, re = "scalemix")
 summary(md)
+}
 }
 \keyword{file}

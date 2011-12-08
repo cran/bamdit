@@ -1,7 +1,10 @@
 BAMDIT ChangeLog
 
+Version 1.1-1 	-- 2011-12-08
+  * Christmas fix for Uwe: Examples do not run during testing.
+
 Version 1.1 	-- 2011-08-30
-	* Weights are return from the bamdit function 
+  * Weights are return from the bamdit function 
     when random effects are scale mixed.
   * Change warning messages when model fails to adapt in JAGS.
 	
