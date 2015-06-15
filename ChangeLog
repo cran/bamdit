@@ -1,19 +1,49 @@
 BAMDIT ChangeLog
+Vestion 2.0 -- 2015
+  * The function bsroc() implements te Bayesian SROC curve
+  * Bayesian Predictive surface added (BPS)
+  * Calculation of the Bayesian area under the curve (BAUC)
+  * Migration of all graphical functions, they use ggplot
+  * The package "coda" is not required
+
+
+Version 1.9 -- 2014
+  * The function metadiag() has a new implementation with blueprint() function within metadiag()
+  * option of using rjags or R2jags in metadiag()
+  * conflict of evidence analysis in metadiag() by splitting the variable w in w1 and w2
+  * Added a function for simulation of data (sim.meta)
+
+Version 1.4 -- 2014-07-08
+  * Improvement in the documentation
+
+Version 1.3 -- 2013-03-15
+  * New version of the function metadiag(). This version has main changes:
+  * 1) The number of degrees of freedom in the model are fixed to a default value
+  * 2) The Wishart prior distribution of the variance covariance matrix is replaced
+  * by a conditional model where the priors are given to individual components.
+  * 3) The priors of the variance covariance distribution are design to avoid boundary
+  * problems in the parameter space.
+  * The three adaptation trials are omited in metadiag()
+
+Version 1.2	-- 2012-07-31
+  * Added more graphical functions
+  * We added meta-analysis examples data.
+  * Improved internal model functions
 
 Version 1.1-1 	-- 2011-12-08
-  * Christmas fix for Uwe: Examples do not run during testing.
+  *  Examples do not run during testing.
 
 Version 1.1 	-- 2011-08-30
-  * Weights are return from the bamdit function 
+  * Weights are return from the bamdit function
     when random effects are scale mixed.
   * Change warning messages when model fails to adapt in JAGS.
-	
+
 Version 1.0-1 	-- 2011-08-09
 	* Nothing has to be written to disk anymore.
-	* Models are compiled / adapted now with "first of three" 
+	* Models are compiled / adapted now with "first of three"
 	  due to an issue where sometimes models don't adapt.
 	* Added ChangeLog
 	* Corrected model adaption process from three to two stages
-		
+
 Version 1.0		-- 2011-08-07
 	* Initial release

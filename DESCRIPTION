@@ -1,22 +1,20 @@
 Package: bamdit
 Type: Package
-Title: Bayesian Meta-Analysis of diagnostic test data
-Version: 1.1-1
-Date: 2011-12-08
-Author: Dr. Pablo Emilio Verde <pabloemilio.verde@uni-duesseldorf.de> &
-        Arnold Sykosch <arnold.sykosch@uni-duesseldorf.de>
-Maintainer: Dr. Pablo Emilio Verde
-        <pabloemilio.verde@uni-duesseldorf.de>
-Depends: R (>= 2.9.0), coda (>= 0.13), rjags (>= 2.2.0-4)
-SystemRequirements: jags (>= 2.2.0)
-Description: Bayesian meta-analysis of diagnostic test data based on a
-        scale mixtures bivariate random-effects model. Summary
-        statistics are based on pooled and predictive sensitivities and
-        specificities. Model checking is used for diagnostic of
-        random-effects' misfit and predictive data is used to assess
-        models departures from observed data.
-License: GPL-3
-LazyLoad: yes
-Packaged: 2011-12-08 14:04:51 UTC; unausgeschlafen
+Title: Bayesian Meta-Analysis of Diagnostic Test Data
+Version: 2.0
+Date: 2015-06-15
+Authors@R: c(person("Pablo Emilio", "Verde", role=c("aut","cre"),
+                    email="pabloemilio.verde@hhu.de"))
+Depends: R (>= 3.1.0)
+Imports: rjags (>= 3.4.0), ggplot2 (>= 0.9.3.1), grid, gridExtra,
+        R2jags (>= 0.04-03)
+SystemRequirements: JAGS (>= 3.4.0) (see
+        http://mcmc-jags.sourceforge.net)
+Description: Functions for Bayesian mete-analysis of diagnostic test data which are based on a scale mixtures bivariate random-effects model.
+License: GPL (<= 2)
+Packaged: 2015-06-16 09:29:41 UTC; pablik
 Repository: CRAN
-Date/Publication: 2011-12-08 20:09:09
+NeedsCompilation: no
+Author: Pablo Emilio Verde [aut, cre]
+Maintainer: Pablo Emilio Verde <pabloemilio.verde@hhu.de>
+Date/Publication: 2015-06-16 12:11:44
