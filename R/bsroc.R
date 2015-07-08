@@ -42,6 +42,7 @@
 #' @import gridExtra
 #' @import R2jags
 #' @import rjags
+#' @importFrom stats cor integrate median pnorm qchisq quantile sd
 #' @export
 bsroc <- function(m,
                   data,

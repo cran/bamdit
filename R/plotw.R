@@ -26,6 +26,7 @@
 #' @import gridExtra
 #' @import R2jags
 #' @import rjags
+#' @importFrom stats cor integrate median pnorm qchisq quantile sd
 
 #' @export
 plotw <- function(m, group=NULL, group.colors = c("blue", "red"))

@@ -1,5 +1,9 @@
 BAMDIT ChangeLog
-Vestion 2.0 -- 2015
+Version 2.0.1 -- August 2015
+  * importFrom stats several functions for bsroc, plotcompare, plotcont, plotsesp, plotw
+  * minor typos fixed
+
+Version 2.0 -- June 2015
   * The function bsroc() implements te Bayesian SROC curve
   * Bayesian Predictive surface added (BPS)
   * Calculation of the Bayesian area under the curve (BAUC)
@@ -11,7 +15,7 @@ Version 1.9 -- 2014
   * The function metadiag() has a new implementation with blueprint() function within metadiag()
   * option of using rjags or R2jags in metadiag()
   * conflict of evidence analysis in metadiag() by splitting the variable w in w1 and w2
-  * Added a function for simulation of data (sim.meta)
+
 
 Version 1.4 -- 2014-07-08
   * Improvement in the documentation

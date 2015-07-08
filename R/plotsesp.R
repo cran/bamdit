@@ -21,6 +21,9 @@
 #' @import gridExtra
 #' @import R2jags
 #' @import rjags
+#' @importFrom stats cor integrate median pnorm qchisq quantile sd
+#'
+
 
 #'@export
 plotsesp <- function(m, binwidth.p = 0.03, CI.level = 0.95)
