@@ -1,6 +1,24 @@
 BAMDIT ChangeLog
-Version 2.0.1 -- August 2015
-  * importFrom stats several functions for bsroc, plotcompare, plotcont, plotsesp, plotw
+
+Version 3.0.0 -- August 2016
+
+  * Implementation of S3 OOP in bamdit.
+  * metadiag is now a generic function.
+  * The argument re.model in metadiag allows to specify random effects on sensitivities
+  and specificities.
+  * Priors: hyper parameters mu.S and mu.D based on logistic distributions with mean = 0 and scale = 1
+  * Priors for the degrees of freedom parameter: df truncated exponential.
+  * The function metadiag calculates the posterior probabilities of outliers.
+  * New functions: print; summary and plot for metadiag objects.
+  * The new plot function summarizes data and model predictions.
+  * The BSROC is only displayed in the range of the observed fpr. If this range is less than 20% the
+    function gives a warning.
+  * We added further documentation and new examples.
+  * Further documentation.
+  * More validation in input arguments.
+
+
+Version 2.0.1 -- June 2015
   * minor typos fixed
 
 Version 2.0 -- June 2015
@@ -10,12 +28,11 @@ Version 2.0 -- June 2015
   * Migration of all graphical functions, they use ggplot
   * The package "coda" is not required
 
-
 Version 1.9 -- 2014
   * The function metadiag() has a new implementation with blueprint() function within metadiag()
   * option of using rjags or R2jags in metadiag()
   * conflict of evidence analysis in metadiag() by splitting the variable w in w1 and w2
-
+  * Added a function for simulation of data (sim.meta)
 
 Version 1.4 -- 2014-07-08
   * Improvement in the documentation

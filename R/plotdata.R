@@ -21,16 +21,51 @@
 #'
 #' ## execute analysis
 #' \dontrun{
-#' data(mri)
-#' plotdata(mri)
+#'
+#' data(ct)
+#' gr <- with(ct, factor(design,
+#'                      labels = c("Retrospective study", "Prospective study")))
+#'
+#' plotdata(ct,               # Data frame
+#'         group = gr,       # Groupping variable
+#'         y.lo = 0.75,      # Lower limit of y-axis
+#'         x.up = 0.75,      # Upper limit of x-axis
+#'         alpha.p = 0.5,    # Transparency of the balls
+#'         max.size = 5)     # Scale the circles
+#'
+#'
+#' data(glas)
+#' plotdata(glas,                 # Data frame
+#'         group = glas$marker,  # Groupping variable
+#'         max.size = 5)         # Scale of circles
+#'
+#'
+#' data(scheidler)
+#' plotdata(scheidler, group = scheidler$test)
+#'
+#'
+#' data(safdar05)
+#' plotdata(safdar05)
+#' plotdata(safdar05, group = safdar05$technique)
+#'
+#' library(dplyr)
+#' safdar05 %>% plotdata(group = safdar05$duration)
+#'
+#'
+#' data(ep)
+#' ep.gr <- with(ep, factor(d1,
+#' ep.gr <- with(ep, factor(d1, labels = c("Prospective study", "Retrospective study")))
+#'
+#'
+#'ep %>% plotdata(group = ep.gr)
+#'ep %>% plotdata(group = factor(ep$nthres))
+#'
 #'
 #'}
 #'
+#'
 #' @import ggplot2
-#' @import grid
-#' @import gridExtra
-#' @import R2jags
-#' @import rjags
+
 
 #'@export
 plotdata <- function(data, group = 1,
