@@ -16,4 +16,3 @@
 \description{
 Generic print function for metadiag object in bamdit
 }
-

@@ -28,4 +28,3 @@ Association};\bold{285}:914-24.
 Data from a Meta-Analysis of Studies Quality of FDG-PET for Diagnosis of SPNs and Mass Lesions
 }
 \keyword{datasets}
-

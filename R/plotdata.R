@@ -6,9 +6,12 @@
 #' different colours. This function use the package \emph{ggplot2}.
 #'
 #'
-#' @param data a data frame with at least 4 columns containing the true positives (tp),
+#' @param data Either a data frame with at least 4 columns containing the true positives (tp),
 #' number of patients with disease (n1), false positives (fp), number of patients without
-#' disease (n2)
+#' disease (n2), or for two.by.two = TRUE a data frame where each line contains the
+#' diagnostic results as a two by two table, where the column names are:
+#' TP, FP, TN, FN.
+#' @param two.by.two If TRUE indicates that the diagnostic results are given as: TP, FP, TN, FN.
 #' @param group a variable indicating a group factor
 #' @param x.lo lower limit of the x-axis
 #' @param x.up upper limit of the x-axis
@@ -26,7 +29,7 @@
 #' gr <- with(ct, factor(design,
 #'                      labels = c("Retrospective study", "Prospective study")))
 #'
-#' plotdata(ct,               # Data frame
+#' plotdata(ct,              # Data frame
 #'         group = gr,       # Groupping variable
 #'         y.lo = 0.75,      # Lower limit of y-axis
 #'         x.up = 0.75,      # Upper limit of x-axis
@@ -68,20 +71,32 @@
 
 
 #'@export
-plotdata <- function(data, group = 1,
-                      x.lo = 0, x.up = 1,
-                      y.lo = 0, y.up = 1,
-                      alpha.p = 0.7,
-                      max.size = 15)
+plotdata <- function(data, two.by.two = FALSE,
+                     group = 1,
+                     x.lo = 0, x.up = 1,
+                     y.lo = 0, y.up = 1,
+                     alpha.p = 0.7,
+                     max.size = 15)
 {
+  if(two.by.two == FALSE)
+    {
   tp <- data[,1]
   n1 <- data[,2]
   fp <- data[,3]
   n2 <- data[,4]
-
-  gr <- group
+  } else
+    {
+      tp <- data$TP
+      fp <- data$FP
+      fn <- data$FN
+      tn <- data$TN
+      n1 <- tp + fn
+      n2 <- fp + tn
+    }
 
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
+
+  gr <- group
 
   if(!missing(data)){
     tpr <-  tp / n1

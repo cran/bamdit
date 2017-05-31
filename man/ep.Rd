@@ -23,4 +23,3 @@ Ectopic pregnancy vs. all other pregnancies data
 Table III Mol et al. 1998
 }
 \keyword{datasets}
-

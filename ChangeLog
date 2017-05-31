@@ -1,5 +1,14 @@
 BAMDIT ChangeLog
 
+Version 3.1.0 -- May 2017
+
+  * In metadiag() and plotdata() we allow that the data format is given
+    as 2x2 table with columns' names: TP, FP, TN, FN.
+  * A bug is fixed in the calcuation of the posterior distribution of BAUC.
+  * The BSROC is calculated for parametrization: re.model = "SeSp".
+  * New Summary function for metadiag.
+  * New Print function for metadiag.
+
 Version 3.0.0 -- August 2016
 
   * Implementation of S3 OOP in bamdit.

@@ -18,9 +18,13 @@
 #'
 #'
 #'
-#' @param data            Data frame with at least 4 columns containing the number of true positives (tp),
-#'                        number of patients with disease (n1), the number of false positives (fp),
-#'                        number of patients without disease (n2).
+#' @param data            Either a data frame with at least 4 columns containing the true positives (tp),
+#'                        number of patients with disease (n1), false positives (fp), number of patients without
+#'                        disease (n2), or for two.by.two = TRUE a data frame where each line contains the
+#'                        diagnostic results as a two by two table, where the column names are:
+#'                        TP, FP, TN, FN.
+#'
+#' @param two.by.two      If TRUE indicates that the diagnostic results are given as: TP, FP, TN, FN.
 #'
 #' @param re              Random effects distribution for the resulting model. Possible
 #'                        values are \emph{normal} for bivariate random effects and \emph{sm} for scale mixtures.
@@ -100,14 +104,21 @@
 #'
 #' \dontrun{
 #'
-#' # Example: Glass ..............................................
+#' # Example: data from Glas et al. (2003).....................................
 #' library(bamdit)
 #' data("glas")
 #' glas.t <- glas[glas$marker == "Telomerase", 1:4]
 #'
 #' glas.t <- glas[glas$marker == "Telomerase", 1:4]
-#' plotdata(glas.t)
+#'
+#' # Simple visualization ...
+#'
+#' plotdata(glas.t,                # Data frame
+#'          two.by.two = FALSE     # Data is given as: (tp, n1, fp, n2)
+#'          )
+#'
 #' glas.m1 <- metadiag(glas.t,                # Data frame
+#'                     two.by.two = FALSE     # Data is given as: (tp, n1, fp, n2)
 #'                     re = "normal",         # Random effects distribution
 #'                     re.model = "DS",       # Random effects on D and S
 #'                     link = "logit",        # Link function
@@ -125,14 +136,14 @@
 #'       parametric.smooth = TRUE)   # Parametric curve
 #'
 #'
-#' Plot results: based on a non-parametric smoother of the posterior predictive rates .......
+#'# Plot results: based on a non-parametric smoother of the posterior predictive rates .......
 #'
 #' plot(glas.m1,                    # Fitted model
 #'      level = c(0.5, 0.75, 0.95), # Credibility levels
 #'      parametric.smooth = FALSE)  # Non-parametric curve
 #'
 #'
-#'Using the pipe command in the package dplyr ...............................................
+#'# Using the pipe command in the package dplyr ...............................................
 #'
 #'library(dplyr)
 #'
@@ -142,7 +153,7 @@
 #'
 #'
 #'
-#'Visualization of posteriors of hyper-parameters .........................................
+#'# Visualization of posteriors of hyper-parameters .........................................
 #'library(ggplot2)
 #'library(GGally)
 #'library(R2jags)
@@ -154,163 +165,163 @@
 #'        )
 #'
 #'
-#' ##.....................................................................................
+#' #............................................................................
 #'
-#' List of different statistical models:
-#'    1) Different link functions: logit, cloglog and probit
+#'# List of different statistical models:
+#'#    1) Different link functions: logit, cloglog and probit
 #'
-#'    2) Different parametrization of random effects in the link scale:
-#'         DS = "differences of TPR and FPR"
-#'         SeSp = "Sensitivity and Specificity"
+#'#    2) Different parametrization of random effects in the link scale:
+#'#         DS = "differences of TPR and FPR"
+#'#         SeSp = "Sensitivity and Specificity"
 #'
-#'    3) Different random effects distributions:
-#'       "normal" or "sm = scale mixtures".
+#'#    3) Different random effects distributions:
+#'#       "normal" or "sm = scale mixtures".
 #'
-#'    4) For the scale mixture random effects:
-#'       split.w = TRUE => "split the weights".
+#'#    4) For the scale mixture random effects:
+#'#       split.w = TRUE => "split the weights".
 #'
-#'    5) For the scale mixture random effects:
-#'       df.estimate = TRUE => "estimate the degrees of freedom".
+#'#    5) For the scale mixture random effects:
+#'#       df.estimate = TRUE => "estimate the degrees of freedom".
 #'
-#'    6) For the scale mixture random effects:
-#'       df.estimate = TRUE => "estimate the degrees of freedom".
+#'#    6) For the scale mixture random effects:
+#'#       df.estimate = TRUE => "estimate the degrees of freedom".
 #'
-#'    7) For the scale mixture random effects:
-#'       df = 4 => "fix the degrees of freedom to a particual value".
-#'       Note that df = 1 fits a Cauchy bivariate distribution to the random effects.
+#'#    7) For the scale mixture random effects:
+#'#       df = 4 => "fix the degrees of freedom to a particual value".
+#'#       Note that df = 1 fits a Cauchy bivariate distribution to the random effects.
 #'
-#' logit-normal-DS
+#'# logit-normal-DS
 #' m <- metadiag(glas.t, re = "normal", re.model = "DS", link = "logit")
 #' summary(m)
 #' plot(m)
 #'
-#' cloglog-normal-DS
+#'# cloglog-normal-DS
 #' summary(metadiag(glas.t, re = "normal", re.model = "DS", link = "cloglog"))
 #'
-#' probit-normal-DS
+#'# probit-normal-DS
 #' summary(metadiag(glas.t, re = "normal", re.model = "DS", link = "probit"))
-#' logit-normal-SeSp
+#'# logit-normal-SeSp
 #' summary(metadiag(glas.t, re = "normal", re.model = "SeSp", link = "logit"))
 #'
-#' cloglog-normal-SeSp
+#'# cloglog-normal-SeSp
 #' summary(metadiag(glas.t, re = "normal", re.model = "SeSp", link = "cloglog"))
-#' probit-normal-SeSp
+#'# probit-normal-SeSp
 #' summary(metadiag(glas.t, re = "normal", re.model = "SeSp", link = "probit"))
 #'
-#' logit-sm-DS
+#'# logit-sm-DS
 #' summary(metadiag(glas.t, re = "sm", re.model = "DS", link = "logit", df = 1))
 #'
-#' cloglog-sm-DS
+#'# cloglog-sm-DS
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "cloglog", df = 1))
 #' plot(m, parametric.smooth = FALSE)
 #'
-#' probit-sm-DS
+#'# probit-sm-DS
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "probit", df = 1))
 #' plot(m, parametric.smooth = FALSE)
 #'
-#' logit-sm-SeSp
+#'# logit-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "logit", df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' cloglog-sm-SeSp
+#'# cloglog-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "cloglog", df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' probit-sm-SeSp
+#'# probit-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit", df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' logit-sm-DS-df
+#'# logit-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "logit",
 #'  df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' cloglog-sm-DS-df
+#'# cloglog-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "cloglog",
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' probit-sm-DS-df
+#'# probit-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "probit",
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' logit-sm-SeSp-df
+#'# logit-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit",
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' cloglog-sm-SeSp-df
+#'# cloglog-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "cloglog",
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' probit-sm-SeSp-df
+#'# probit-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit",
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #'
-#' split.w ....................................................................................
+#'# split.w ...................................................................
 #'
-#' logit-sm-DS
+#'# logit-sm-DS
 #' summary(m <- metadiag(glas.t, re = "sm", re.model = "DS", link = "logit", split.w = TRUE, df = 10))
 #' plot(m)
 #'
-#' cloglog-sm-DS
+#'# cloglog-sm-DS
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "cloglog", split.w = TRUE, df = 4))
 #' plot(m)
 #'
-#' probit-sm-DS
+#'# probit-sm-DS
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "probit", split.w = TRUE, df = 4))
 #' plot(m, parametric.smooth = FALSE)
 #'
-#' logit-sm-SeSp
+#'# logit-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "logit", split.w = TRUE, df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' cloglog-sm-SeSp
+#'# cloglog-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "cloglog", split.w = TRUE, df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' probit-sm-SeSp
+#'# probit-sm-SeSp
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit", split.w = TRUE, df = 1))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
 #'
-#' #logit-sm-DS-df
+#'# logit-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "logit", split.w = TRUE,
 #'  df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' cloglog-sm-DS-df
+#'# cloglog-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "cloglog", split.w = TRUE,
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' probit-sm-DS-df
+#'# probit-sm-DS-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "DS", link = "probit", split.w = TRUE,
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' logit-sm-SeSp-df
+#'# logit-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit", split.w = TRUE,
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' cloglog-sm-SeSp-df
+#'# cloglog-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "cloglog", split.w = TRUE,
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
 #' plotw(m)
 #'
-#' probit-sm-SeSp-df
+#'# probit-sm-SeSp-df
 #' summary(m<-metadiag(glas.t, re = "sm", re.model = "SeSp", link = "probit", split.w = TRUE,
 #' df.estimate = TRUE))
 #' plot(m, parametric.smooth = FALSE, level = c(0.5, 0.9))
@@ -324,6 +335,7 @@
 #' @export
 #'
 metadiag <- function(data,
+                     two.by.two = FALSE,
                      # Arguments for the model:
                      re              = "normal",
                      re.model        = "DS",
@@ -365,6 +377,7 @@ metadiag <- function(data,
 metadiag.default <- function(
           # Data
            data,
+           two.by.two = FALSE,
           # Arguments for the model:
           re              = "normal",
 
@@ -429,14 +442,26 @@ if(!link.test)stop("This link function is not implemented")
 	      pre.mu.S <- 1/(sd.mu.S*sd.mu.S)
 	pre.Fisher.rho <- 1/(sd.Fisher.rho * sd.Fisher.rho)
 
-	# Test if the data is compatible ...
-	N <- dim(data)[1]
 
   # Setting up data nodes ...
-	tp <- data[,1]
-	fp <- data[,3]
-	n1 <- data[,2]
-	n2 <- data[,4]
+
+	if(two.by.two == FALSE)
+	{
+	  tp <- data[,1]
+	  n1 <- data[,2]
+	  fp <- data[,3]
+	  n2 <- data[,4]
+	} else
+	{
+	  tp <- data$TP
+	  fp <- data$FP
+	  fn <- data$FN
+	  tn <- data$TN
+	  n1 <- tp + fn
+	  n2 <- fp + tn
+	}
+
+	N <- length(n1)
 
   # Data errors
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
@@ -1429,6 +1454,7 @@ results$link <- link
 results$re <- re
 results$re.model <- re.model
 results$data <- data
+results$two.by.two <- two.by.two
 #results$r2jags <- r2jags
 results$split.w <- split.w
 #results$df.estimate <- df.estimate

@@ -33,4 +33,3 @@ plotsesp(m = m1.ep)
 \code{\link{metadiag}}.
 }
 \keyword{file}
-

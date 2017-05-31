@@ -2,8 +2,8 @@
 % Please edit documentation in R/bamdit-package.R
 \docType{package}
 \name{bamdit-package}
-\alias{bamdit}
 \alias{bamdit-package}
+\alias{bamdit}
 \title{Bayesian Meta-Analysis of Diagnostic Test Data}
 \description{
 Bayesian meta-analysis of diagnostic test data based on a scale mixtures
@@ -27,14 +27,14 @@ Date: \tab 2016-08-23 \cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr }
 }
-\author{
-PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@hhu.de}
-}
 \references{
 Verde P. E. (2010). Meta-analysis of diagnostic test data: A
 bivariate Bayesian modeling approach. Statistics in Medicine. 29, 3088-3102.
 
 Verde P. E. (2016). bamdit: An R Package for Bayesian Meta-Analysis of Diagnostic Test Data. Journal of Statisticsl Software (under review).
+}
+\author{
+PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@hhu.de}
 }
 \keyword{Bayesian}
 \keyword{Conflict}
@@ -46,4 +46,3 @@ Verde P. E. (2016). bamdit: An R Package for Bayesian Meta-Analysis of Diagnosti
 \keyword{Multiparameters}
 \keyword{Outliers}
 \keyword{of}
-

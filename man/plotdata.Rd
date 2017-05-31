@@ -4,13 +4,17 @@
 \alias{plotdata}
 \title{Basic function to plot results of meta-analysis of diagnostic test data}
 \usage{
-plotdata(data, group = 1, x.lo = 0, x.up = 1, y.lo = 0, y.up = 1,
-  alpha.p = 0.7, max.size = 15)
+plotdata(data, two.by.two = FALSE, group = 1, x.lo = 0, x.up = 1,
+  y.lo = 0, y.up = 1, alpha.p = 0.7, max.size = 15)
 }
 \arguments{
-\item{data}{a data frame with at least 4 columns containing the true positives (tp),
+\item{data}{Either a data frame with at least 4 columns containing the true positives (tp),
 number of patients with disease (n1), false positives (fp), number of patients without
-disease (n2)}
+disease (n2), or for two.by.two = TRUE a data frame where each line contains the
+diagnostic results as a two by two table, where the column names are:
+TP, FP, TN, FN.}
+
+\item{two.by.two}{If TRUE indicates that the diagnostic results are given as: TP, FP, TN, FN.}
 
 \item{group}{a variable indicating a group factor}
 
@@ -41,7 +45,7 @@ data(ct)
 gr <- with(ct, factor(design,
                      labels = c("Retrospective study", "Prospective study")))
 
-plotdata(ct,               # Data frame
+plotdata(ct,              # Data frame
         group = gr,       # Groupping variable
         y.lo = 0.75,      # Lower limit of y-axis
         x.up = 0.75,      # Upper limit of x-axis
@@ -80,4 +84,3 @@ ep \%>\% plotdata(group = factor(ep$nthres))
 
 
 }
-

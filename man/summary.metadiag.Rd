@@ -20,4 +20,3 @@ intervals = c(0.025, 0.5, 0.975).}
 \description{
 Generic summary function for metadiag object in bamdit
 }
-

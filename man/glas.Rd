@@ -32,4 +32,3 @@ bivariate Bayesian modeling approach. \emph{Statistics in Medicine}.
 \bold{29}, 3088-3102.
 }
 \keyword{datasets}
-

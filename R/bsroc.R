@@ -8,8 +8,8 @@
 #' @param title                Optional parameter for setting a title in the plot.
 #' @param fpr.x                Grid of values where the conditionl distribution is calculated.
 #' @param partial.AUC          Automatically calculate the AUC for the observed range of FPRs, default is TRUE.
-#' @param xlim.bsroc           Limits of the x-axis for the BSROC curve plot.
-#' @param ylim.bsroc           Limits of the y-axis for the BSROC curve plot.
+#' @param xlim.bsroc           Graphical limits of the x-axis for the BSROC curve plot.
+#' @param ylim.bsroc           Graphical limits of the y-axis for the BSROC curve plot.
 #' @param lower.auc            Lower limit of the AUC.
 #' @param upper.auc            Upper limit of the AUC.
 #' @param col.fill.points      Color used to fill points, default is blue.
@@ -24,14 +24,17 @@
 #'
 #' ## execute analysis
 #' \dontrun{
+#' # Example: data from Glas et al. (2003).....................................
+#'
 #' data(glas)
 #' glas.t <- glas[glas$marker == "Telomerase", 1:4]
 #' glas.m1 <- metadiag(glas.t, re = "normal", link = "logit")
 #' bsroc(glas.m1)
 #' bsroc(glas.m1, plot.post.bauc = TRUE)
 #'
-#' In this example the range of the observed FPR is less than 20%.
-#' Calculating the BSROC curve makes no sense! You will get a warning message!
+#' # Example: data from Scheidler et al. (1997)
+#' # In this example the range of the observed FPR is less than 20%.
+#' # Calculating the BSROC curve makes no sense! You will get a warning message!
 #'
 #' data(mri)
 #' mri.m <- metadiag(mri)
@@ -49,34 +52,51 @@
 bsroc <- function(m,
                   level = c(0.05, 0.5, 0.95),
                   title = "Bayesian SROC Curve",
-                  fpr.x =  seq(0.01, 0.99, 0.01),
+                  fpr.x =  seq(0.01, 0.95, 0.01),
                   partial.AUC = TRUE,
                   xlim.bsroc = c(0,1),
                   ylim.bsroc = c(0,1),
                   lower.auc = 0,
-                  upper.auc = 0.99,
+                  upper.auc = 0.95,
                   col.fill.points = "blue",
                   results.bauc = TRUE,
                   results.bsroc = FALSE,
                   plot.post.bauc = FALSE,
                   bins = 30,
-                  scale.size.area = 10 )
+                  scale.size.area = 10)
 {
 
   link <- m$link
   link.test <- link == "logit"      #%in%  c("logit", "cloglog", "probit")
-  if(!link.test)stop("This link function is not implemented (in this version only logit is implemented")
+  if(!link.test)stop("This link function is not implemented (choose link = logit in metadiag)")
 
   for(i in 1:length(level))
   {if(!(0 < level[i] & level[i] < 1))
     stop("At least one credibility level is not correct. Use values between 0 and 1!")
   }
 
+
+
+  # Formatting data
   data <- m$data
-  tp <- data[,1]
-  n1 <- data[,2]
-  fp <- data[,3]
-  n2 <- data[,4]
+  two.by.two <- m$two.by.two
+
+  if(two.by.two == FALSE)
+  {
+    tp <- data[,1]
+    n1 <- data[,2]
+    fp <- data[,3]
+    n2 <- data[,4]
+  } else
+  {
+    tp <- data$TP
+    fp <- data$FP
+    fn <- data$FN
+    tn <- data$TN
+    n1 <- tp + fn
+    n2 <- fp + tn
+  }
+
 
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
 
@@ -92,33 +112,52 @@ bsroc <- function(m,
   if(delta.fpr < 0.2)warning("The range of the observed FPR is less than 20%. Calculating the BSROC curve makes no sense!")
 
   # Partial AUC..............................................................................
-  if(partial.AUC==TRUE) fpr.x <-  seq(0.01, max(fpr), 0.01)
+  if(partial.AUC==TRUE) fpr.x <-  seq(min(fpr), max(fpr), 0.01)
 
 
   # data frame of observed rates...
   dat.hat <- data.frame(tpr = tpr,
                         fpr = fpr,
                           n = n)
-
-
-
   # Parametric ..............................................................................
+       param <- m$re.model
+  param.test <- param == "DS"
 
+  if(param.test == TRUE){
   # Patch for the "note" no-visible-binding-for-global-variable
         A <- m$BUGSoutput$sims.list$mu.D
-      rho <- m$BUGSoutput$sims.list$rho
   sigma.D <- m$BUGSoutput$sims.list$sigma.D
   sigma.S <- m$BUGSoutput$sims.list$sigma.S
+      rho <- m$BUGSoutput$sims.list$rho
         B <- rho*sigma.D/sigma.S
+        }
+    else
+        {A <- m$BUGSoutput$sims.list$mu.Se
+  rho.SeSp <- m$BUGSoutput$sims.list$rho
+  sigma.Se <- m$BUGSoutput$sims.list$sigma.Se
+  sigma.Sp <- m$BUGSoutput$sims.list$sigma.Sp
+         B <- sigma.Se/sigma.Sp*rho.SeSp
+         }
+
 
   ###############################################################################
   # BSROC
+  # Problem here ... it must return a bound value!!
+  if(param.test == TRUE){
   f <- function(FPR, A, B){
-    x <- A/(1-B) + (B+1)/(1-B)*log(FPR/(1-FPR))
+    x <- A/(1-B) + (B + 1)/(1- B)*
+                     log(FPR/(1-FPR))
     f.value <- exp(x)/(1+exp(x))
     return(f.value)
   }
-
+  }
+  else{
+    f <- function(FPR, A, B){
+      x <- A + B*log(FPR/(1-FPR))
+      f.value <- exp(x)/(1+exp(x))
+      return(f.value)
+      }
+    }
   ###############################################################################
   # Simple graph for the BSROC
 
@@ -146,54 +185,86 @@ bsroc <- function(m,
   # Bayesian Area Under the Curve (BAUC)...........................................................
 
   if(partial.AUC==TRUE){
-  lower.auc <- 0.01
+  lower.auc <- min(fpr)
   upper.auc <- max(fpr)
   }
 
   # BAUC function
-  area <- function(A, B)integrate(f, lower = lower.auc,
-                                     upper = upper.auc,
-                                         A = A,
-                                         B = B)$value
+  area <- function(A, B, lower.auc, upper.auc)
+  {
+    val <- integrate(f,
+                     lower = lower.auc,
+                     upper = upper.auc,
+                     A = A,
+                     B = B)$value
+    return(val)
+  }
+
+  # Calculations restricted for the slope -1 < B < 1 (Verde 2008 pag 11.).....
+
+  index.B.range <- B < 0.99 & B > -0.99
+   A.auc <- A[index.B.range]
+   B.auc <- B[index.B.range]
   v.area <- Vectorize(area)
+    bauc <- v.area(A.auc, B.auc, lower.auc, upper.auc)
 
-  # Calculations restricted for the slope -1 < B < 1 (Verde 2008 pag 11.)..........................
-  #
-  index.B.range <- B < 0.9 & B > -0.9
-  A.auc <- A[index.B.range]
-  B.auc <- B[index.B.range]
+  # Posteriors
+    A.mean <- round(mean(A.auc),3)
+    A.sd <- round(sd(A.auc),3)
+    A.ci <- round(quantile(A.auc, probs = c(0.025, 0.25, 0.5, 0.75, 0.975), na.rm = TRUE),3)
+    A.post <- cbind(A.mean, A.sd, t(A.ci))
+    B.mean <- round(mean(B.auc),3)
+    B.sd <- round(sd(B.auc),3)
+    B.ci <- round(quantile(B.auc, probs = c(0.025, 0.25, 0.5, 0.75, 0.975), na.rm = TRUE),3)
+    B.post <- cbind(B.mean, B.sd, t(B.ci))
 
-  bauc <- v.area(A.auc, B.auc)
+    post.AB <- rbind(A.post, B.post)
+    rownames(post.AB) <- c("A", "B")
+    colnames(post.AB) <- c("Mean", "SD", "2.5%", "25%", "50%","75%","97.5%")
 
+    bauc.mean <- round(mean(bauc),3)
+      bauc.sd <- round(sd(bauc),3)
+      bauc.ci <- round(quantile(bauc,
+                      probs = c(0.025, 0.25, 0.5, 0.75, 0.975),
+                      na.rm = TRUE),3)
+    bauc.post <- cbind(bauc.mean, bauc.sd, t(bauc.ci))
+    colnames(bauc.post) <- c("Mean", "SD", "2.5%", "25%", "50%","75%","97.5%")
+    rownames(bauc.post) <- "BAUC"
   # Print results .........................................................
 
   if(results.bauc==TRUE){
   cat("\n")
-  cat("Summary results for the Bayesian Area Under the Curve (BAUC)","\n")
   cat("------------------------------------------------------------","\n")
-
-  bauc.ci <- quantile(bauc, probs = c(0.025, 0.25, 0.5, 0.75, 0.975), na.rm = TRUE)
-  print(bauc.ci)
+  cat("These results are based on the following random effects model:", "\n")
+  cat("------------------------------------------------------------","\n")
+  cat("Link function: ",m$link, "\n")
+  cat("Random Effects distribution: ",
+      ifelse(m$re=="normal", "Bivariate Normal", "Bivariate Scale Mixture"), "\n")
+  cat("Parametrization:", ifelse(m$re.model=="DS", "Differences and Sums", "Sensitivities and Specificities"), "\n")
+  cat("Splitting study weights: ", ifelse(m$split.w, "Yes", "No"), "\n")
   cat("------------------------------------------------------------","\n")
   cat("\n")
-  }
-
-  if(results.bsroc == TRUE)
-  {
-    level.names <- paste(paste("TPR",level*100, sep=" "),"%", sep="")
-    names(dat.lin) <- c("FPR", level.names)
-
-    cat("Summary results for the BSROC curve","\n")
-    cat("------------------------------------------------------------","\n")
-    print(dat.bsroc, "\n")
+  cat("------------------------------------------------------------","\n")
+  cat("Posteriors for the parameters of the Bayesian SROC Curve","\n")
+  cat("------------------------------------------------------------","\n")
+   print(post.AB)
+  cat("\n")
+  cat("------------------------------------------------------------","\n")
+  cat("Summary results for the Bayesian Area Under the Curve (BAUC)","\n")
+  cat("------------------------------------------------------------","\n")
+   print(bauc.post)
+  cat("------------------------------------------------------------","\n")
   }
 
   post.bauc <- ggplot(data.frame(bauc), aes(x = bauc)) +
                geom_histogram(colour = "black", fill = "dodgerblue", bins = bins) +
                xlab("Bayesian Area Under the Curve") +
                geom_vline(xintercept = median(bauc)) +
-               geom_vline(xintercept = quantile(bauc, prob = c(0.025, 0.975)), linetype = "longdash")+
+               geom_vline(xintercept = quantile(bauc,
+                                                prob = c(0.025, 0.975)),
+                                                  linetype = "longdash")+
                ggtitle("Posterior Distribution")
+
 
   if(plot.post.bauc == TRUE)
   {
@@ -210,8 +281,6 @@ bsroc <- function(m,
   {
     print(bsroc.plot)
   }
-
-  return()
 }
 
 

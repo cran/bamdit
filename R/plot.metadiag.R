@@ -64,13 +64,13 @@
 #'       level = c(0.5, 0.75, 0.95), # Credibility levels
 #'       parametric.smooth = TRUE)   # Parametric curve
 #'
-#' Plot results: based on a non-parametric smoother of the posterior predictive rates .......
+#'# Plot results: based on a non-parametric smoother of the posterior predictive rates .......
 #'
 #' plot(glas.m1,                    # Fitted model
 #'      level = c(0.5, 0.75, 0.95), # Credibility levels
 #'      parametric.smooth = FALSE)  # Non-parametric curve
 #'
-#'Using the pipe command in the package dplyr and changing some colors .....................
+#'# Using the pipe command in the package dplyr and changing some colors .......
 #'
 #'library(dplyr)
 #'
@@ -114,7 +114,6 @@ plot.metadiag <- function(x,
   #if(class(m)!="rjags")stop("You have to provide a valid rjags object as fitted model.")
 
   link <- x$link
-  data <- x$data
 
   link.test <- link %in% c("logit", "cloglog", "probit")
   if(!link.test)stop("This link function is not implemented.")
@@ -129,10 +128,26 @@ plot.metadiag <- function(x,
 
   dat.pred <- data.frame(fpr.new = 1 - x$BUGSoutput$sims.list$sp.new,
                          tpr.new = x$BUGSoutput$sims.list$se.new)
-  tp <- data[,1]
-  n1 <- data[,2]
-  fp <- data[,3]
-  n2 <- data[,4]
+
+ # Formatting data
+        data <- x$data
+  two.by.two <- x$two.by.two
+
+  if(two.by.two == FALSE)
+  {
+    tp <- data[,1]
+    n1 <- data[,2]
+    fp <- data[,3]
+    n2 <- data[,4]
+  } else
+  {
+    tp <- data$TP
+    fp <- data$FP
+    fn <- data$FN
+    tn <- data$TN
+    n1 <- tp + fn
+    n2 <- fp + tn
+  }
 
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
 

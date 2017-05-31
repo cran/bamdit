@@ -71,13 +71,13 @@ glas.m1 <- metadiag(glas.t,                # Data frame
       level = c(0.5, 0.75, 0.95), # Credibility levels
       parametric.smooth = TRUE)   # Parametric curve
 
-Plot results: based on a non-parametric smoother of the posterior predictive rates .......
+# Plot results: based on a non-parametric smoother of the posterior predictive rates .......
 
 plot(glas.m1,                    # Fitted model
      level = c(0.5, 0.75, 0.95), # Credibility levels
      parametric.smooth = FALSE)  # Non-parametric curve
 
-Using the pipe command in the package dplyr and changing some colors .....................
+# Using the pipe command in the package dplyr and changing some colors .......
 
 library(dplyr)
 
@@ -94,4 +94,3 @@ glas.t \%>\%
 \seealso{
 \code{\link{metadiag}}.
 }
-

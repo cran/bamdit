@@ -5,8 +5,8 @@
 \title{bsroc}
 \usage{
 bsroc(m, level = c(0.05, 0.5, 0.95), title = "Bayesian SROC Curve",
-  fpr.x = seq(0.01, 0.99, 0.01), partial.AUC = TRUE, xlim.bsroc = c(0, 1),
-  ylim.bsroc = c(0, 1), lower.auc = 0, upper.auc = 0.99,
+  fpr.x = seq(0.01, 0.95, 0.01), partial.AUC = TRUE, xlim.bsroc = c(0, 1),
+  ylim.bsroc = c(0, 1), lower.auc = 0, upper.auc = 0.95,
   col.fill.points = "blue", results.bauc = TRUE, results.bsroc = FALSE,
   plot.post.bauc = FALSE, bins = 30, scale.size.area = 10)
 }
@@ -21,9 +21,9 @@ bsroc(m, level = c(0.05, 0.5, 0.95), title = "Bayesian SROC Curve",
 
 \item{partial.AUC}{Automatically calculate the AUC for the observed range of FPRs, default is TRUE.}
 
-\item{xlim.bsroc}{Limits of the x-axis for the BSROC curve plot.}
+\item{xlim.bsroc}{Graphical limits of the x-axis for the BSROC curve plot.}
 
-\item{ylim.bsroc}{Limits of the y-axis for the BSROC curve plot.}
+\item{ylim.bsroc}{Graphical limits of the y-axis for the BSROC curve plot.}
 
 \item{lower.auc}{Lower limit of the AUC.}
 
@@ -49,14 +49,17 @@ Bayesian SROC (Summary ROC) curve. The predictive curves are approximated using 
 
 ## execute analysis
 \dontrun{
+# Example: data from Glas et al. (2003).....................................
+
 data(glas)
 glas.t <- glas[glas$marker == "Telomerase", 1:4]
 glas.m1 <- metadiag(glas.t, re = "normal", link = "logit")
 bsroc(glas.m1)
 bsroc(glas.m1, plot.post.bauc = TRUE)
 
-In this example the range of the observed FPR is less than 20\%.
-Calculating the BSROC curve makes no sense! You will get a warning message!
+# Example: data from Scheidler et al. (1997)
+# In this example the range of the observed FPR is less than 20\%.
+# Calculating the BSROC curve makes no sense! You will get a warning message!
 
 data(mri)
 mri.m <- metadiag(mri)
@@ -67,4 +70,3 @@ bsroc(mri.m)
 \code{\link{metadiag}}.
 }
 \keyword{file}
-

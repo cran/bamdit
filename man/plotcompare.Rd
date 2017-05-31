@@ -72,4 +72,3 @@ plotcompare(m1.ct, m2.ct,
 \code{\link{metadiag}}.
 }
 \keyword{file}
-

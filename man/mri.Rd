@@ -29,4 +29,3 @@ Verde P. E. (2010). Meta-analysis of diagnostic test
  \emph{Statistics in Medicine}. \bold{29}, 3088-3102.
 }
 \keyword{datasets}
-
