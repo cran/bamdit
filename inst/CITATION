@@ -1,0 +1,17 @@
+bibentry(bibtype = "Article",
+  title        = "{bamdit}: An {R} Package for Bayesian Meta-Analysis of Diagnostic Test Data",
+  author       = person(given = c("Pablo", "Emilio"),
+                        family = "Verde",
+                        email = "pabloemilio.verde@hhu.de"),
+  journal      = "Journal of Statistical Software",
+  year         = "2018",
+  volume       = "85",
+  number       = "14",
+  pages        = "1--32",
+  doi          = "10.18637/jss.v085.i14",
+
+  header       = "To cite bamdit in publications use:",
+comment =  "The DOI in the CITATION is for a new JSS publication that will be registered after publication on CRAN." 
+)
+
+

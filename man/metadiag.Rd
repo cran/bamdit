@@ -119,7 +119,7 @@ plotdata(glas.t,                # Data frame
          )
 
 glas.m1 <- metadiag(glas.t,                # Data frame
-                    two.by.two = FALSE     # Data is given as: (tp, n1, fp, n2)
+                    two.by.two = FALSE,    # Data is given as: (tp, n1, fp, n2)
                     re = "normal",         # Random effects distribution
                     re.model = "DS",       # Random effects on D and S
                     link = "logit",        # Link function
@@ -335,6 +335,6 @@ plotw(m)
 Verde P. E. (2010). Meta-analysis of diagnostic test data: A
 bivariate Bayesian modeling approach. Statistics in Medicine. 29, 3088-3102.
 
-Verde P. E. (2016). bamdit: An R Package for Bayesian Meta-Analysis
-of Diagnostic Test Data. Journal of Statisticsl Software (under review).
+Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
+of Diagnostic Test Data. Journal of Statisticsl Software. 85,14,1--32.
 }

@@ -71,8 +71,9 @@
 
 
 #'@export
-plotdata <- function(data, two.by.two = FALSE,
-                     group = 1,
+plotdata <- function(data,
+                     two.by.two = FALSE,
+                           group = 1,
                      x.lo = 0, x.up = 1,
                      y.lo = 0, y.up = 1,
                      alpha.p = 0.7,
@@ -112,7 +113,7 @@ plotdata <- function(data, two.by.two = FALSE,
       scale_x_continuous(name = "FPR (1 - Specificity)", limits=c(x.lo, x.up)) +
       scale_y_continuous(name = "TPR (Sensitivity)", limits=c(y.lo, y.up)) +
       geom_point(shape = 21, alpha = alpha.p, aes_string(fill = "gr", size = "n")) +
-      scale_size_area(max_size = 20)
+      scale_size_area(max_size = max.size)
   }else{
     ggplot(dat.plot, aes_string(x = "fpr", y = "tpr", size = "n"))+
       scale_x_continuous(name = "FPR (1 - Specificity)", limits = c(0, 1)) +

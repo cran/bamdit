@@ -1,5 +1,11 @@
 BAMDIT ChangeLog
 
+Version 3.2.0 -- August 2018.
+
+  * Corrections in the documentation.
+  * Link the package to the JSS paper.
+  * Function plotdata(), the argument max.size is active.
+
 Version 3.1.0 -- May 2017
 
   * In metadiag() and plotdata() we allow that the data format is given
