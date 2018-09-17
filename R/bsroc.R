@@ -20,6 +20,15 @@
 #' @param scale.size.area      Scale area for the ploted points, default = 10.
 #' @seealso \code{\link{metadiag}}.
 #' @keywords file
+#'
+#' @references Verde P. E. (2010). Meta-analysis of diagnostic test data: A
+#' bivariate Bayesian modeling approach. Statistics in Medicine. 29(30):3088-102.
+#' doi: 10.1002/sim.4055.
+#'
+#' @references Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
+#' of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
+#'
+#'
 #' @examples
 #'
 #' ## execute analysis

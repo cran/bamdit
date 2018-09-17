@@ -22,16 +22,18 @@ this area.
 \tabular{ll}{
 Package: \tab bamdit  \cr
 Type: \tab Package    \cr
-Version: \tab 3.0.0   \cr
-Date: \tab 2016-08-23 \cr
+Version: \tab 3.2.1   \cr
+Date: \tab 2018-09-14 \cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr }
 }
 \references{
 Verde P. E. (2010). Meta-analysis of diagnostic test data: A
-bivariate Bayesian modeling approach. Statistics in Medicine. 29, 3088-3102.
+bivariate Bayesian modeling approach. Statistics in Medicine. 29(30):3088-102.
+doi: 10.1002/sim.4055.
 
-Verde P. E. (2016). bamdit: An R Package for Bayesian Meta-Analysis of Diagnostic Test Data. Journal of Statisticsl Software (under review).
+Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
+of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
 }
 \author{
 PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@hhu.de}

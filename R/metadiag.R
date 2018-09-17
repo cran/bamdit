@@ -90,13 +90,13 @@
 #' a summary, a print and a plot functions are implemented for this type of object.
 #'
 #'
-#'
 #' @references Verde P. E. (2010). Meta-analysis of diagnostic test data: A
-#' bivariate Bayesian modeling approach. Statistics in Medicine. 29, 3088-3102.
+#' bivariate Bayesian modeling approach. Statistics in Medicine. 29(30):3088-102.
+#' doi: 10.1002/sim.4055.
 #'
 #'
 #' @references Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
-#' of Diagnostic Test Data. Journal of Statisticsl Software. 85,14,1--32.
+#' of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
 #'
 #'
 #' @examples

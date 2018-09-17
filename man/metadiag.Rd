@@ -8,10 +8,10 @@ metadiag(data, two.by.two = FALSE, re = "normal", re.model = "DS",
   link = "logit", mean.mu.D = 0, mean.mu.S = 0, sd.mu.D = 1,
   sd.mu.S = 1, sigma.D.upper = 10, sigma.S.upper = 10,
   mean.Fisher.rho = 0, sd.Fisher.rho = 1/sqrt(2), df = 4,
-  df.estimate = FALSE, df.lower = 3, df.upper = 20, split.w = FALSE,
-  n.1.new = 50, n.2.new = 50, nr.chains = 2, nr.iterations = 10000,
-  nr.adapt = 1000, nr.burnin = 1000, nr.thin = 1, be.quiet = FALSE,
-  r2jags = TRUE)
+  df.estimate = FALSE, df.lower = 3, df.upper = 20,
+  split.w = FALSE, n.1.new = 50, n.2.new = 50, nr.chains = 2,
+  nr.iterations = 10000, nr.adapt = 1000, nr.burnin = 1000,
+  nr.thin = 1, be.quiet = FALSE, r2jags = TRUE)
 }
 \arguments{
 \item{data}{Either a data frame with at least 4 columns containing the true positives (tp),
@@ -333,8 +333,9 @@ plotw(m)
 }
 \references{
 Verde P. E. (2010). Meta-analysis of diagnostic test data: A
-bivariate Bayesian modeling approach. Statistics in Medicine. 29, 3088-3102.
+bivariate Bayesian modeling approach. Statistics in Medicine. 29(30):3088-102.
+doi: 10.1002/sim.4055.
 
 Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
-of Diagnostic Test Data. Journal of Statisticsl Software. 85,14,1--32.
+of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
 }
