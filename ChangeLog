@@ -1,5 +1,20 @@
 BAMDIT ChangeLog
 
+Version 3.3.1 -- July 2019
+  * Some keywords are replaced.
+  * Groupping variable "group" is the name (as character) of the data frame
+    column. This change applies to the following function: plotdata; plotw;
+    plotcompare.
+  * Bug in the x-y limits in plotdata() function corrected.
+  * Bug in the x-y limits in the plot.metadiag() function corrected.
+  * The function plotcompare() understands the two.by.two argument from metadiag().
+  * Title argument for the function plotw().
+  * The metadiag() function returns the posteriors of "se"" and "sp" for each study.
+  * The metadiag() function collects the studies' names.
+  * The dataframe "ct" has the author and year information.
+  * New data frame "diabetes" for comparative studies.
+  * New data frame "rapt" for comparative studies.
+
 Version 3.2.1 -- September 2018.
   * The CITATION file corresponds to the JSS paper.
 
@@ -24,13 +39,14 @@ Version 3.0.0 -- August 2016
   * metadiag is now a generic function.
   * The argument re.model in metadiag allows to specify random effects on sensitivities
   and specificities.
-  * Priors: hyper parameters mu.S and mu.D based on logistic distributions with mean = 0 and scale = 1
+  * Priors: hyper parameters mu.S and mu.D based on logistic distributions with
+  mean = 0 and scale = 1
   * Priors for the degrees of freedom parameter: df truncated exponential.
   * The function metadiag calculates the posterior probabilities of outliers.
   * New functions: print; summary and plot for metadiag objects.
   * The new plot function summarizes data and model predictions.
-  * The BSROC is only displayed in the range of the observed fpr. If this range is less than 20% the
-    function gives a warning.
+  * The BSROC is only displayed in the range of the observed fpr. If this range is less
+  than 20% the function gives a warning.
   * We added further documentation and new examples.
   * Further documentation.
   * More validation in input arguments.
@@ -69,7 +85,7 @@ Version 1.2	-- 2012-07-31
   * We added meta-analysis examples data.
   * Improved internal model functions
 
-Version 1.1-1 	-- 2011-12-08
+Version 1.1.1 	-- 2011-12-08
   *  Examples do not run during testing.
 
 Version 1.1 	-- 2011-08-30
@@ -77,7 +93,7 @@ Version 1.1 	-- 2011-08-30
     when random effects are scale mixed.
   * Change warning messages when model fails to adapt in JAGS.
 
-Version 1.0-1 	-- 2011-08-09
+Version 1.0.1 	-- 2011-08-09
 	* Nothing has to be written to disk anymore.
 	* Models are compiled / adapted now with "first of three"
 	  due to an issue where sometimes models don't adapt.

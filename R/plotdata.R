@@ -1,4 +1,4 @@
-#' Basic function to plot results of meta-analysis of diagnostic test data
+#' Basic function to plot the data of meta-analysis of diagnostic test
 #'
 #' This function plots the true positive rates vs the false positive rates of each study included
 #' in the meta-analysis. Study results are displayed by circles, the diameter of each circle is proportional
@@ -12,7 +12,7 @@
 #' diagnostic results as a two by two table, where the column names are:
 #' TP, FP, TN, FN.
 #' @param two.by.two If TRUE indicates that the diagnostic results are given as: TP, FP, TN, FN.
-#' @param group a variable indicating a group factor
+#' @param group a variable name indicating a group factor
 #' @param x.lo lower limit of the x-axis
 #' @param x.up upper limit of the x-axis
 #' @param y.lo lower limit of the y-axis
@@ -26,44 +26,15 @@
 #' \dontrun{
 #'
 #' data(ct)
-#' gr <- with(ct, factor(design,
-#'                      labels = c("Retrospective study", "Prospective study")))
+#' ct$design <- with(ct, factor(design,
+#'              labels = c("Prospective", "Retrospective")))
 #'
 #' plotdata(ct,              # Data frame
-#'         group = gr,       # Groupping variable
+#'         group = "design", # Groupping variable
 #'         y.lo = 0.75,      # Lower limit of y-axis
 #'         x.up = 0.75,      # Upper limit of x-axis
 #'         alpha.p = 0.5,    # Transparency of the balls
 #'         max.size = 5)     # Scale the circles
-#'
-#'
-#' data(glas)
-#' plotdata(glas,                 # Data frame
-#'         group = glas$marker,  # Groupping variable
-#'         max.size = 5)         # Scale of circles
-#'
-#'
-#' data(scheidler)
-#' plotdata(scheidler, group = scheidler$test)
-#'
-#'
-#' data(safdar05)
-#' plotdata(safdar05)
-#' plotdata(safdar05, group = safdar05$technique)
-#'
-#' library(dplyr)
-#' safdar05 %>% plotdata(group = safdar05$duration)
-#'
-#'
-#' data(ep)
-#' ep.gr <- with(ep, factor(d1,
-#' ep.gr <- with(ep, factor(d1, labels = c("Prospective study", "Retrospective study")))
-#'
-#'
-#'ep %>% plotdata(group = ep.gr)
-#'ep %>% plotdata(group = factor(ep$nthres))
-#'
-#'
 #'}
 #'
 #'
@@ -73,7 +44,7 @@
 #'@export
 plotdata <- function(data,
                      two.by.two = FALSE,
-                           group = 1,
+                           group = NULL,
                      x.lo = 0, x.up = 1,
                      y.lo = 0, y.up = 1,
                      alpha.p = 0.7,
@@ -97,8 +68,6 @@ plotdata <- function(data,
 
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
 
-  gr <- group
-
   if(!missing(data)){
     tpr <-  tp / n1
     fpr <-  fp / n2
@@ -106,9 +75,16 @@ plotdata <- function(data,
   }else
     stop("NAs are not alow in this plot function")
 
-  dat.plot <- data.frame(tpr, fpr, n, gr)
+  if(is.null(group)){
 
-  if(length(gr)>1){
+    dat.plot = data.frame(tpr, fpr, n)
+    }
+  else{
+    dat.plot = data.frame(tpr, fpr, n, gr=data[, group])
+    }
+
+
+  if(!is.null(group)){
     ggplot(dat.plot, aes_string(x = "fpr", y = "tpr", size = "n", group = "gr"))+
       scale_x_continuous(name = "FPR (1 - Specificity)", limits=c(x.lo, x.up)) +
       scale_y_continuous(name = "TPR (Sensitivity)", limits=c(y.lo, y.up)) +
@@ -116,8 +92,8 @@ plotdata <- function(data,
       scale_size_area(max_size = max.size)
   }else{
     ggplot(dat.plot, aes_string(x = "fpr", y = "tpr", size = "n"))+
-      scale_x_continuous(name = "FPR (1 - Specificity)", limits = c(0, 1)) +
-      scale_y_continuous(name = "TPR (Sensitivity)", limits = c(0, 1)) +
+      scale_x_continuous(name = "FPR (1 - Specificity)", limits=c(x.lo, x.up)) +
+      scale_y_continuous(name = "TPR (Sensitivity)", limits=c(y.lo, y.up)) +
       geom_point(shape = 21, fill ="royalblue", alpha = alpha.p) +
       scale_size_area(max_size = max.size)
   }

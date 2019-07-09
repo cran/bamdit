@@ -14,9 +14,7 @@
 #'
 #' @param m2.name Label of the model 2.
 #'
-#' @param group A factor variable to display data of different groups. The length of group must be the same as the total number of studies used to fit model 1 and model 2.
-#'              For example, if 10 studies are used to fit model m1 and 5 studies are used to fit model m2, then
-#'              the length(group)=15.
+#' @param group An optional argument, which is a variable name indicating a group factor. This argument is used to compare results from two subgroups.
 #'
 #' @param limits.x A vector with the limits of the horizontal axis.
 #'
@@ -41,23 +39,20 @@
 #' glas.m2 <- metadiag(glas.t, re = "sm")
 #' plotcompare(m1 = glas.m1, m2 = glas.m2)
 #'
-#'
-#'
 #' # Comparing results from two models fitted to two subgroups of data:
 #' # studies with retrospective design and studies with prospective design
 #'
-#'  data(ct)
-#'  gr <- with(ct, factor(design,
-#'                        labels = c("Retrospective study", "Prospective study")))
+#' data("ct")
+#' ct$design = factor(ct$design, labels = c("Prospective", "Retrospective"))
 #'
-#' m1.ct <- metadiag(ct[ct$design==1, 1:4]) # Restrospective studies
-#' m2.ct <- metadiag(ct[ct$design==2, 1:4]) # Prospective studies
+#' m1.ct <- metadiag(ct[ct$design=="Prospective", ])
+#' m2.ct <- metadiag(ct[ct$design=="Retrospective", ])
 #'
-#' plotcompare(m1.ct, m2.ct,
-#'            m1.name = "Retrospective design",
-#'            m2.name = "Prospective design",
-#'              group = gr,
-#'           limits.x = c(0, 0.75), limits.y = c(0.65, 1))
+#' plotcompare(m1.ct, m2.ct,m1.name = "Retrospective design",
+#' m2.name = "Prospective design",group = "design",
+#' limits.x = c(0, 0.75), limits.y = c(0.65, 1))
+#'
+#'
 #' }
 #'
 #' @import ggplot2
@@ -94,13 +89,26 @@ link2 <- m2$link
 
   # Base plot ...............................................................................
 
-  data <- rbind(m1$data, m2$data)
+  if(is.null(group)){data = m1$data}
+  else if (!is.null(group)){data = rbind(m1$data, m2$data)}
 
+  two.by.two = m1$two.by.two
 
-  tp <- data[,1]
-  n1 <- data[,2]
-  fp <- data[,3]
-  n2 <- data[,4]
+  if(two.by.two == FALSE)
+  {
+    tp <- data[,1]
+    n1 <- data[,2]
+    fp <- data[,3]
+    n2 <- data[,4]
+  } else
+  {
+    tp <- data$TP
+    fp <- data$FP
+    fn <- data$FN
+    tn <- data$TN
+    n1 <- tp + fn
+    n2 <- fp + tn
+  }
 
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
 
@@ -111,13 +119,16 @@ link2 <- m2$link
   }else
     stop("NAs are not alow in this plot function")
 
+  if(is.null(group)){
+    dat.hat = data.frame(tpr, fpr, n)
+  }
+  else{
+    dat.hat = data.frame(tpr, fpr, n, group=data[, group])
+  }
+
 
   if(is.null(group)){
   # The  plot ...............................................................................
-    dat.hat <- data.frame(tpr = tpr,
-                          fpr = fpr,
-                            n = n)
-
   baseplot  <- ggplot(dat.hat, aes_string(x = "fpr", y = "tpr"))+
                 scale_x_continuous(name = "FPR (1 - Specificity)", limits = limits.x) +
                 scale_y_continuous(name = "TPR (Sensitivity)", limits = limits.y) +
@@ -125,23 +136,19 @@ link2 <- m2$link
                 scale_size_area(max_size = 10) +
                 ggtitle(title)
   # .........................................................................................
-  } else if (is.factor(group)) {
-
-    dat.hat <- data.frame(tpr = tpr,
-                          fpr = fpr,
-                            n = n,
-                        group = group)
+  } else if (!is.null(group)) {
 
     baseplot  <- ggplot(dat.hat, aes_string(x = "fpr", y = "tpr"))+
       scale_x_continuous(name = "FPR (1 - Specificity)", limits = limits.x) +
       scale_y_continuous(name = "TPR (Sensitivity)", limits = limits.y) +
-      geom_point(data=dat.hat, aes_string(x = "fpr", y = "tpr", size = "n", fill = "group"),
+      geom_point(data=dat.hat, aes_string(x = "fpr", y = "tpr",
+                                          size = "n", fill = "group"),
                  shape = 21, alpha = 0.35) +
       scale_size_area(max_size = 10) +
       scale_fill_manual(values = group.colors) +
       ggtitle(title)
+    }
 
-  }
  # Predictive curve for model m1 ............................................................
  # Patch for the "note" no-visible-binding-for-global-variable
 

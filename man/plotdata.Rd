@@ -2,10 +2,10 @@
 % Please edit documentation in R/plotdata.R
 \name{plotdata}
 \alias{plotdata}
-\title{Basic function to plot results of meta-analysis of diagnostic test data}
+\title{Basic function to plot the data of meta-analysis of diagnostic test}
 \usage{
-plotdata(data, two.by.two = FALSE, group = 1, x.lo = 0, x.up = 1,
-  y.lo = 0, y.up = 1, alpha.p = 0.7, max.size = 15)
+plotdata(data, two.by.two = FALSE, group = NULL, x.lo = 0,
+  x.up = 1, y.lo = 0, y.up = 1, alpha.p = 0.7, max.size = 15)
 }
 \arguments{
 \item{data}{Either a data frame with at least 4 columns containing the true positives (tp),
@@ -16,7 +16,7 @@ TP, FP, TN, FN.}
 
 \item{two.by.two}{If TRUE indicates that the diagnostic results are given as: TP, FP, TN, FN.}
 
-\item{group}{a variable indicating a group factor}
+\item{group}{a variable name indicating a group factor}
 
 \item{x.lo}{lower limit of the x-axis}
 
@@ -42,44 +42,15 @@ different colours. This function use the package \emph{ggplot2}.
 \dontrun{
 
 data(ct)
-gr <- with(ct, factor(design,
-                     labels = c("Retrospective study", "Prospective study")))
+ct$design <- with(ct, factor(design,
+             labels = c("Prospective", "Retrospective")))
 
 plotdata(ct,              # Data frame
-        group = gr,       # Groupping variable
+        group = "design", # Groupping variable
         y.lo = 0.75,      # Lower limit of y-axis
         x.up = 0.75,      # Upper limit of x-axis
         alpha.p = 0.5,    # Transparency of the balls
         max.size = 5)     # Scale the circles
-
-
-data(glas)
-plotdata(glas,                 # Data frame
-        group = glas$marker,  # Groupping variable
-        max.size = 5)         # Scale of circles
-
-
-data(scheidler)
-plotdata(scheidler, group = scheidler$test)
-
-
-data(safdar05)
-plotdata(safdar05)
-plotdata(safdar05, group = safdar05$technique)
-
-library(dplyr)
-safdar05 \%>\% plotdata(group = safdar05$duration)
-
-
-data(ep)
-ep.gr <- with(ep, factor(d1,
-ep.gr <- with(ep, factor(d1, labels = c("Prospective study", "Retrospective study")))
-
-
-ep \%>\% plotdata(group = ep.gr)
-ep \%>\% plotdata(group = factor(ep$nthres))
-
-
 }
 
 

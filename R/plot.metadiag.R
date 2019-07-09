@@ -170,7 +170,8 @@ plot.metadiag <- function(x,
   # Base plot ...............................................................................
   baseplot  <- ggplot(dat.sample, aes_string(x = "fpr.new", y = "tpr.new"))+
     geom_point(aes(color = "Predictions")) +
-    scale_color_manual(name='', values = c("Predictions" = color.pred.points), guide = "legend") +
+    scale_color_manual(name='', values = c("Predictions" = color.pred.points),
+                       guide = "legend") +
     scale_x_continuous(name = "FPR (1 - Specificity)", limits = limits.x) +
     scale_y_continuous(name = "TPR (Sensitivity)", limits = limits.y) +
     geom_point(data = dat.hat, aes_string(x = "fpr", y = "tpr", size = "n"),

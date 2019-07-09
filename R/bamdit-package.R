@@ -15,8 +15,8 @@
 #' \tabular{ll}{
 #' Package: \tab bamdit  \cr
 #' Type: \tab Package    \cr
-#' Version: \tab 3.2.1   \cr
-#' Date: \tab 2018-09-14 \cr
+#' Version: \tab 3.3.2   \cr
+#' Date: \tab 2019-07-09 \cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr }
 #'
@@ -33,13 +33,108 @@
 #' @references Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
 #' of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
 #'
-#' @keywords Hierarchical Modeling, Bayesian Meta-Analysis, Conflict of Evidence, Outliers Detection, Multiparameters Meta-Analysis,
+#' @keywords Meta-Analysis Outliers ROC Sensitivity Specificity MCMC JAGS AUC
+#'
+#'
+
+NULL
+
+
+#' Systematic review which compares the accuracy of HbA1c vs
+#' FPG in deabetes
+#'
+#' This data frame contains results of diagnostic accuraccy of 38 studies
+#' which reported comparison of sensitivity and specificity between
+#' HbA1c vs FPG in a population-based screening for type 2 diabetes.
+#'
+#' @name diabetes
+#'
+#' @docType data
+#'
+#' @description This data frame contains results of diagnostic accuraccy of 38 studies which reported comparison of sensitivity and specificity between HbA1c vs FPG in a population based screening for type 2 diabetes.
+#'
+#' @format  A data frame with 38 rows and 9 columns. Each row represents study results, the columns are:
+#'
+#'    \describe{
+#'\item{Study}{Name of the first author.}
+#'\item{TP_HbA1c}{Number of true positive cases for HbA1c.}
+#'\item{FP_HbA1c}{Number of false positive cases for HbA1c.}
+#'\item{FN_HbA1c}{Number of false negative cases for HbA1c.}
+#'\item{TN_HbA1c}{Number of true negative cases for HbA1c.}
+#'\item{TP_FPG}{Number of true positive cases for FPG.}
+#'\item{FP_FPG}{Number of false positive cases for FPG.}
+#'\item{FN_FPG}{Number of false negative cases for FPG.}
+#'\item{TN_FPG}{Number of true negative cases for FPG.}
+#'     }
+#'
+#'
+#'
+#' @source
+#' Hoyer, A., Kuss, O. Meta-analysis for the comparison of two
+#' disgnostic test: a new approach based on copulas. Stat. Med. 2018; 37:739-748
+#'
+#'
+#'
+#' @keywords datasets
+#'
+#'
+
+
+
+NULL
+
+
+#' Systematic reviews of clinical decision tools for acute abdominal pain
+#'
+#' This data frame contains results of diagnostic accuraccy of 13 studies
+#' which reported comparison of sensitivity and specificity between
+#' doctors using diagnostic tools vs doctors without decision tools.
+#'
+#'
+#' @name rapt
+#' @docType data
+#'
+#' @description This data frame corresponds to 13 clinical studies reporting the accuracy of doctors added with decision tools.
+#'
+#' @format  A data frame with 13 rows and 13 columns. Each row represents study results, the columns are:
+#'    \describe{
+#'\item{Author}{Name of the first author and year of publication}
+#'\item{tp.dr}{Number of true positive cases for unadded doctors.}
+#'\item{fp.dr}{Number of false positive cases for unadded doctors.}
+#'\item{fn.dr}{Number of false negative cases for unadded doctors.}
+#'\item{tn.dr}{Number of true negative cases for unadded doctors.}
+#'\item{tp.tools}{Number of true positive cases for doctors with decision tools.}
+#'\item{fp.tools}{Number of false positive cases for doctors with decision tools.}
+#'\item{fn.tools}{Number of false negative cases for doctors with decision tools.}
+#'\item{tn.tools}{Number of true negative cases for doctors with decision tools.}
+#'\item{tool}{Diagnostic tool.}
+#'\item{n.dr}{Total number of cases for unadded doctors.}
+#'\item{n.tools}{Total number of cases for doctors with decision tools.}
+#'\item{design}{Study design.}
+#'     }
+#'
+#' @references
+#'
+#' Health Technol Assess. 2006 Nov;10(47):1-167, iii-iv.
+#' Systematic reviews of clinical decision tools for acute abdominal pain.
+#' Liu JL1, Wyatt JC, Deeks JJ, Clamp S, Keen J, Verde P, Ohmann C,
+#' Wellwood J, Dawes M, Altman DG.
+#'
+#' @source
+#'
+#' Health Technol Assess. 2006 Nov;10(47):1-167, iii-iv.
+#' Systematic reviews of clinical decision tools for acute abdominal pain.
+#' Liu JL1, Wyatt JC, Deeks JJ, Clamp S, Keen J, Verde P, Ohmann C,
+#' Wellwood J, Dawes M, Altman DG.
+#'
+#' @keywords datasets
 
 NULL
 
 #' Diagnosis of appendicities with computer tomography scans
 #'
-#' This data frame corresponds to 51 clinical studies reporting the accuracy of
+#' This data frame corresponds to 51 clinical studies reporting
+#' the accuracy of
 #' computer tomography (CT) scans for the diagnosis of appendicities.
 #'
 #'
@@ -50,12 +145,13 @@ NULL
 #' @description This data frame corresponds to 51 clinical studies reporting the accuracy of computer tomography (CT) scans for the diagnosis of appendicities.
 #'
 #'
-#' @format  A matrix with 51 rows and 16 columns. Each row represents study results, the columns are:
+#' @format  A matrix with 51 rows and 17 columns. Each row represents study results, the columns are:
 #'    \describe{
 #'     \item{tp}{number of true positives.}
 #'     \item{n1}{number of patients with disease.}
 #'     \item{fp}{number of false positives.}
 #'     \item{n2}{number of patients without disease.}
+#'     \item{Author}{First author and year.}
 #'     \item{country}{Country: EU = 1, others/USA = 2.}
 #'     \item{hosp}{Type of hospital: 1 = university, 2 = others.}
 #'     \item{inclus}{Inclusion criteria: 1 = Suspected, 2 = appendectomy.}

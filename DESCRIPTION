@@ -1,8 +1,8 @@
 Package: bamdit
 Type: Package
 Title: Bayesian Meta-Analysis of Diagnostic Test Data
-Version: 3.2.1
-Date: 2018-09-14
+Version: 3.3.2
+Date: 2019-07-09
 Authors@R: c(person("Pablo Emilio", "Verde", role=c("aut","cre"),
                     email="pabloemilio.verde@hhu.de"))
 Depends: R (>= 3.4.0)
@@ -13,11 +13,11 @@ SystemRequirements: JAGS (>= 3.4.0) (see
 Description: Functions for Bayesian meta-analysis of diagnostic test data which
     are based on a scale mixtures bivariate random-effects model.
 License: GPL (>= 2)
-Packaged: 2018-09-17 14:04:02 UTC; verde
+Packaged: 2019-07-09 13:54:03 UTC; verde
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8
 NeedsCompilation: no
 Author: Pablo Emilio Verde [aut, cre]
 Maintainer: Pablo Emilio Verde <pabloemilio.verde@hhu.de>
-Date/Publication: 2018-09-17 15:00:03 UTC
+Date/Publication: 2019-07-09 14:10:07 UTC

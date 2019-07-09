@@ -23,9 +23,7 @@ plotcompare(m1, m2, level = 0.95,
 
 \item{m2.name}{Label of the model 2.}
 
-\item{group}{A factor variable to display data of different groups. The length of group must be the same as the total number of studies used to fit model 1 and model 2.
-For example, if 10 studies are used to fit model m1 and 5 studies are used to fit model m2, then
-the length(group)=15.}
+\item{group}{An optional argument, which is a variable name indicating a group factor. This argument is used to compare results from two subgroups.}
 
 \item{limits.x}{A vector with the limits of the horizontal axis.}
 
@@ -49,23 +47,20 @@ glas.m1 <- metadiag(glas.t)
 glas.m2 <- metadiag(glas.t, re = "sm")
 plotcompare(m1 = glas.m1, m2 = glas.m2)
 
-
-
 # Comparing results from two models fitted to two subgroups of data:
 # studies with retrospective design and studies with prospective design
 
- data(ct)
- gr <- with(ct, factor(design,
-                       labels = c("Retrospective study", "Prospective study")))
+data("ct")
+ct$design = factor(ct$design, labels = c("Prospective", "Retrospective"))
 
-m1.ct <- metadiag(ct[ct$design==1, 1:4]) # Restrospective studies
-m2.ct <- metadiag(ct[ct$design==2, 1:4]) # Prospective studies
+m1.ct <- metadiag(ct[ct$design=="Prospective", ])
+m2.ct <- metadiag(ct[ct$design=="Retrospective", ])
 
-plotcompare(m1.ct, m2.ct,
-           m1.name = "Retrospective design",
-           m2.name = "Prospective design",
-             group = gr,
-          limits.x = c(0, 0.75), limits.y = c(0.65, 1))
+plotcompare(m1.ct, m2.ct,m1.name = "Retrospective design",
+m2.name = "Prospective design",group = "design",
+limits.x = c(0, 0.75), limits.y = c(0.65, 1))
+
+
 }
 
 }

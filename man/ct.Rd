@@ -4,12 +4,13 @@
 \name{ct}
 \alias{ct}
 \title{Diagnosis of appendicities with computer tomography scans}
-\format{A matrix with 51 rows and 16 columns. Each row represents study results, the columns are:
+\format{A matrix with 51 rows and 17 columns. Each row represents study results, the columns are:
    \describe{
     \item{tp}{number of true positives.}
     \item{n1}{number of patients with disease.}
     \item{fp}{number of false positives.}
     \item{n2}{number of patients without disease.}
+    \item{Author}{First author and year.}
     \item{country}{Country: EU = 1, others/USA = 2.}
     \item{hosp}{Type of hospital: 1 = university, 2 = others.}
     \item{inclus}{Inclusion criteria: 1 = Suspected, 2 = appendectomy.}
@@ -35,7 +36,8 @@ Heinrich-Heine University}. Moorenstr. 5, D-40225 Duesseldorf Germany.
 This data frame corresponds to 51 clinical studies reporting the accuracy of computer tomography (CT) scans for the diagnosis of appendicities.
 }
 \details{
-This data frame corresponds to 51 clinical studies reporting the accuracy of
+This data frame corresponds to 51 clinical studies reporting
+the accuracy of
 computer tomography (CT) scans for the diagnosis of appendicities.
 }
 \references{

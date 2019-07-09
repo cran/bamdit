@@ -22,8 +22,8 @@ this area.
 \tabular{ll}{
 Package: \tab bamdit  \cr
 Type: \tab Package    \cr
-Version: \tab 3.2.1   \cr
-Date: \tab 2018-09-14 \cr
+Version: \tab 3.3.2   \cr
+Date: \tab 2019-07-09 \cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr }
 }
@@ -38,13 +38,11 @@ of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, p
 \author{
 PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@hhu.de}
 }
-\keyword{Bayesian}
-\keyword{Conflict}
-\keyword{Detection,}
-\keyword{Evidence,}
-\keyword{Hierarchical}
-\keyword{Meta-Analysis,}
-\keyword{Modeling,}
-\keyword{Multiparameters}
+\keyword{AUC}
+\keyword{JAGS}
+\keyword{MCMC}
+\keyword{Meta-Analysis}
 \keyword{Outliers}
-\keyword{of}
+\keyword{ROC}
+\keyword{Sensitivity}
+\keyword{Specificity}

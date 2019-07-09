@@ -503,7 +503,9 @@ if(!link.test)stop("This link function is not implemented")
          "mu.S",
       "sigma.D",
       "sigma.S",
-            "rho")
+            "rho",
+      "se",
+      "sp")
 
 	parameters.model.SeSp <-
 	  c("se.pool",
@@ -516,7 +518,9 @@ if(!link.test)stop("This link function is not implemented")
 	    "mu.Sp",
 	    "sigma.Se",
 	    "sigma.Sp",
-	    "rho")
+	    "rho",
+	    "se",
+	    "sp")
 
 # Choose the list of parameters according to the parametrization ...
 	if(re.model=="DS") parameters.model <- parameters.model.DS
@@ -562,6 +566,10 @@ blueprint <- function(link = "logit", re = "normal", re.model = "DS", split.w = 
 {
   tp[i] ~ dbin(TPR[i], n1[i])
   fp[i] ~ dbin(FPR[i], n2[i])
+
+  se[i] = TPR[i]
+  sp[i] = 1 - FPR[i]
+
   "
 
   #----
