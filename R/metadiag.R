@@ -382,7 +382,7 @@ metadiag.default <- function(
           re              = "normal",
 
           # Parametrization...................................................
-          re.model        = "DS",
+          re.model        = "SeSp",
           link            = "logit",
 
 					# Hyperpriors parameters............................................
@@ -466,6 +466,13 @@ if(!link.test)stop("This link function is not implemented")
   # Data errors
   if(tp>n1 || fp>n2)stop("the data is inconsistent")
   if(missing(data))stop("NAs are not alow in this function")
+
+	# Statistical warning!
+	if(N<5)warning("\n ************************************** \n
+	                The number of studies is lower than the number of fixed parameters!\n
+	                Posteriors have been estimated correctly, but you should check the
+	                setup of the priors.")
+
 
 #-----
 # Data, initial values and parameters .....................................................

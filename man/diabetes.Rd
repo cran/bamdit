@@ -4,8 +4,9 @@
 \name{diabetes}
 \alias{diabetes}
 \title{Systematic review which compares the accuracy of HbA1c vs
-FPG in deabetes}
-\format{A data frame with 38 rows and 9 columns. Each row represents study results, the columns are:
+FPG in diabetes}
+\format{
+A data frame with 38 rows and 9 columns. Each row represents study results, the columns are:
 
    \describe{
 \item{Study}{Name of the first author.}
@@ -17,13 +18,14 @@ FPG in deabetes}
 \item{FP_FPG}{Number of false positive cases for FPG.}
 \item{FN_FPG}{Number of false negative cases for FPG.}
 \item{TN_FPG}{Number of true negative cases for FPG.}
-    }}
+    }
+}
 \source{
 Hoyer, A., Kuss, O. Meta-analysis for the comparison of two
 disgnostic test: a new approach based on copulas. Stat. Med. 2018; 37:739-748
 }
 \description{
-This data frame contains results of diagnostic accuraccy of 38 studies which reported comparison of sensitivity and specificity between HbA1c vs FPG in a population based screening for type 2 diabetes.
+This data frame contains results of diagnostic accuracy of 38 studies which reported comparison of sensitivity and specificity between HbA1c vs FPG in a population based screening for type 2 diabetes.
 }
 \details{
 This data frame contains results of diagnostic accuraccy of 38 studies

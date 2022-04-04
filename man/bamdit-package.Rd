@@ -20,10 +20,10 @@ this area.
 }
 \details{
 \tabular{ll}{
-Package: \tab bamdit  \cr
-Type: \tab Package    \cr
-Version: \tab 3.3.2   \cr
-Date: \tab 2019-07-09 \cr
+Package: \tab bamdit    \cr
+Type: \tab Package      \cr
+Version: \tab 3.4.0     \cr
+Date: \tab 2022-04-04  \cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr }
 }
@@ -33,7 +33,7 @@ bivariate Bayesian modeling approach. Statistics in Medicine. 29(30):3088-102.
 doi: 10.1002/sim.4055.
 
 Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
-of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
+of Diagnostic Test Data. Journal of Statistical Software. Volume 86, issue 10, pages 1--32.
 }
 \author{
 PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@hhu.de}

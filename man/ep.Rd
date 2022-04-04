@@ -4,7 +4,8 @@
 \name{ep}
 \alias{ep}
 \title{Ectopic pregnancy vs. all other pregnancies data}
-\format{A matrix with 21 rows and 8 columns. Each row represents study
+\format{
+A matrix with 21 rows and 8 columns. Each row represents study
 results, the columns are:
 \describe{
 \item{tp}{number of true positives.}
@@ -14,7 +15,8 @@ results, the columns are:
 \item{d1}{Prospective vs. retrospective.}
 \item{d2}{Cohort vs. case-control}
 \item{d3}{Consecutive sampling patients series vs. non-consecutive.}
-}}
+}
+}
 \source{
 Table III Mol et al. 1998
 }

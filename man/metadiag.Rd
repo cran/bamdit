@@ -4,14 +4,35 @@
 \alias{metadiag}
 \title{Bayesian Meta-Analysis of diagnostic test data}
 \usage{
-metadiag(data, two.by.two = FALSE, re = "normal", re.model = "DS",
-  link = "logit", mean.mu.D = 0, mean.mu.S = 0, sd.mu.D = 1,
-  sd.mu.S = 1, sigma.D.upper = 10, sigma.S.upper = 10,
-  mean.Fisher.rho = 0, sd.Fisher.rho = 1/sqrt(2), df = 4,
-  df.estimate = FALSE, df.lower = 3, df.upper = 20,
-  split.w = FALSE, n.1.new = 50, n.2.new = 50, nr.chains = 2,
-  nr.iterations = 10000, nr.adapt = 1000, nr.burnin = 1000,
-  nr.thin = 1, be.quiet = FALSE, r2jags = TRUE)
+metadiag(
+  data,
+  two.by.two = FALSE,
+  re = "normal",
+  re.model = "DS",
+  link = "logit",
+  mean.mu.D = 0,
+  mean.mu.S = 0,
+  sd.mu.D = 1,
+  sd.mu.S = 1,
+  sigma.D.upper = 10,
+  sigma.S.upper = 10,
+  mean.Fisher.rho = 0,
+  sd.Fisher.rho = 1/sqrt(2),
+  df = 4,
+  df.estimate = FALSE,
+  df.lower = 3,
+  df.upper = 20,
+  split.w = FALSE,
+  n.1.new = 50,
+  n.2.new = 50,
+  nr.chains = 2,
+  nr.iterations = 10000,
+  nr.adapt = 1000,
+  nr.burnin = 1000,
+  nr.thin = 1,
+  be.quiet = FALSE,
+  r2jags = TRUE
+)
 }
 \arguments{
 \item{data}{Either a data frame with at least 4 columns containing the true positives (tp),

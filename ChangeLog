@@ -1,4 +1,35 @@
-BAMDIT ChangeLog
+bamdit ChangeLog
+
+Commitments for the next version
+
+ * New function "bforest" for forest plot of posteriors of
+  sensitivity and specificity.
+
+ * Modeling function to analyze comparative test
+
+ * Meta-regression for sensitivity and specificity
+
+ * Implement diagnostic function with approximate Bayesian cross-validation
+
+ * Implement diagnostic functions and depreciate the weights plots
+
+Version 3.3.4 -- March 2022
+
+ * New function "hyper.posterior" matrix-plot for posteriors of hyper parameters.
+
+Version 3.3.3 -- August 2021
+
+  * New "summary" function for metadiag().
+  * The default option for re.model = "SeSp".
+  * New argument "jag.seed" to make results replicable in metadiag().
+  * New warning message from "metadiag()" when the number of studies is less than 6.
+
+Version 3.3.2 -- November 2020
+
+  * Function "metadiag()": the argument "r2jags" has been depreciated.
+  * Several bugs in ploting functions had been fixed.
+  * New data frame "skin" for deep-learning diagnostic tests.
+
 
 Version 3.3.1 -- July 2019
   * Some keywords are replaced.

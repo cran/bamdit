@@ -4,13 +4,15 @@
 \name{mri}
 \alias{mri}
 \title{Diagnosis of lymph node metastasis with magnetic resonance imaging}
-\format{A matrix with 10 rows and 4 columns. Each row represents study results, the columns are:
+\format{
+A matrix with 10 rows and 4 columns. Each row represents study results, the columns are:
 \describe{
 \item{tp}{true positives}
 \item{n1}{number of patients with disease}
 \item{fp}{false positives}
 \item{n2}{number of patients without disease}
-}}
+}
+}
 \source{
 The data were obtained from
 

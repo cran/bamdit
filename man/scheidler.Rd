@@ -5,7 +5,8 @@
 \alias{scheidler}
 \title{Radiological evaluation of lymph node metastases in patients with cervical cancer: a
 meta-analysis.}
-\format{A matrix with 46 rows and 7 columns. Each row represents study
+\format{
+A matrix with 46 rows and 7 columns. Each row represents study
 results, the columns are:
 \describe{
 \item{tp}{true positives.}
@@ -15,7 +16,8 @@ results, the columns are:
 \item{author}{first author of the study.}
 \item{year}{publication date.}
 \item{test}{test method used in the study.}
-}}
+}
+}
 \source{
 The data were obtained from
 

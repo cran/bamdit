@@ -4,8 +4,17 @@
 \alias{plotdata}
 \title{Basic function to plot the data of meta-analysis of diagnostic test}
 \usage{
-plotdata(data, two.by.two = FALSE, group = NULL, x.lo = 0,
-  x.up = 1, y.lo = 0, y.up = 1, alpha.p = 0.7, max.size = 15)
+plotdata(
+  data,
+  two.by.two = FALSE,
+  group = NULL,
+  x.lo = 0,
+  x.up = 1,
+  y.lo = 0,
+  y.up = 1,
+  alpha.p = 0.7,
+  max.size = 15
+)
 }
 \arguments{
 \item{data}{Either a data frame with at least 4 columns containing the true positives (tp),

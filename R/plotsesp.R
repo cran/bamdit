@@ -22,7 +22,7 @@
 #' @import R2jags
 #' @import rjags
 #' @importFrom stats median quantile
-
+#'
 #'@export
 plotsesp <- function(m, binwidth.p = 0.03, CI.level = 0.95)
   {

@@ -31,7 +31,7 @@
 #'
 #' @param S Number of predictive rates to be plotted.
 #'
-#' @param color.pred.points Color of the prosterior predictive rates.
+#' @param color.pred.points Color of the posterior predictive rates.
 #'
 #' @param color.data.points Color of the data points.
 #'

@@ -4,7 +4,8 @@
 \name{rapt}
 \alias{rapt}
 \title{Systematic reviews of clinical decision tools for acute abdominal pain}
-\format{A data frame with 13 rows and 13 columns. Each row represents study results, the columns are:
+\format{
+A data frame with 13 rows and 13 columns. Each row represents study results, the columns are:
    \describe{
 \item{Author}{Name of the first author and year of publication}
 \item{tp.dr}{Number of true positive cases for unadded doctors.}
@@ -19,7 +20,8 @@
 \item{n.dr}{Total number of cases for unadded doctors.}
 \item{n.tools}{Total number of cases for doctors with decision tools.}
 \item{design}{Study design.}
-    }}
+    }
+}
 \source{
 Health Technol Assess. 2006 Nov;10(47):1-167, iii-iv.
 Systematic reviews of clinical decision tools for acute abdominal pain.

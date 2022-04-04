@@ -4,7 +4,8 @@
 \name{ct}
 \alias{ct}
 \title{Diagnosis of appendicities with computer tomography scans}
-\format{A matrix with 51 rows and 17 columns. Each row represents study results, the columns are:
+\format{
+A matrix with 51 rows and 17 columns. Each row represents study results, the columns are:
    \describe{
     \item{tp}{number of true positives.}
     \item{n1}{number of patients with disease.}
@@ -23,7 +24,8 @@
     \item{refer.na}{Valid reference: 0 = no, 1 = yes.}
     \item{sample.na}{Sample: 0 = selected, 1= consecutive/random.}
     \item{gender.na}{Gender, female: 0 = less than 50\%; 1 = more than 50\%.}
-    }}
+    }
+}
 \source{
 The data were obtainded from
 

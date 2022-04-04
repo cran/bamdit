@@ -13,10 +13,10 @@
 #' this area.
 #'
 #' \tabular{ll}{
-#' Package: \tab bamdit  \cr
-#' Type: \tab Package    \cr
-#' Version: \tab 3.3.2   \cr
-#' Date: \tab 2019-07-09 \cr
+#' Package: \tab bamdit    \cr
+#' Type: \tab Package      \cr
+#' Version: \tab 3.4.0     \cr
+#' Date: \tab 2022-04-04  \cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr }
 #'
@@ -31,7 +31,7 @@
 #' doi: 10.1002/sim.4055.
 #'
 #' @references Verde P. E. (2018). bamdit: An R Package for Bayesian Meta-Analysis
-#' of Diagnostic Test Data. Journal of Statisticsl Software. Volume 86, issue 10, pages 1--32.
+#' of Diagnostic Test Data. Journal of Statistical Software. Volume 86, issue 10, pages 1--32.
 #'
 #' @keywords Meta-Analysis Outliers ROC Sensitivity Specificity MCMC JAGS AUC
 #'
@@ -39,9 +39,46 @@
 
 NULL
 
+#' Accuracy of Computer-Aided Diagnosis of Melanoma: A Meta-analysis.
+#'
+#' @name skin
+#'
+#' @docType data
+#'
+#' @description This data frame contains results 70 studies investigated computer-aided diagnosis of melanoma
+#'
+#' @format A matrix with 70 rows and 15 columns. Each row represents a study's results, the columns are:
+#' \describe{
+#' \item{"TP"}{number of true positives.}
+#' \item{"TN"}{number of ture negatives.}
+#' \item{"FP"}{number of false positives.}
+#' \item{"FN"}{number of false negative.}
+#' \item{"study_ID"}{Study identification}
+#' \item{"test_set_source"}{Public or propietary.}
+#' \item{"method"}{Diagnostic technique used in the study: computer vision; deep learning or hardware-based.}
+#' \item{"test_set_independent"}{yes or no.}
+#' \item{"SAMPLE_SELECTION_BR"}{QUADAS-2, Patient selection bias.}
+#' \item{"INDEX_TEST_BR"}{QUADAS-2, Index test description/application bias.}
+#' \item{"REFERENCE_STANDARD_BR"}{QUADAS-2, Reference standard bias.}
+#' \item{"FLOW_AND_TIMING_BR"}{QUADAS-2, Patient flow and timing bias.}
+#' \item{"SAMPLE_SELECTION_AP}{QUADAS-2, Patient selection bias.}
+#' \item{"INDEX_TEST_AP"}{QUADAS-2, Index test description/application bias.}
+#' \item{"REFERENCE_STANDARD_AP"}{QUADAS-2, Reference standard bias.}
+#' }
+#'
+#' @source The data were obtained from
+#'
+#' Dick V, Sinz C, Mittlböck M, Kittler H, Tschandl P. Accuracy of Computer-Aided Diagnosis of Melanoma:
+#' A Meta-analysis. JAMA Dermatol. 2019 Nov 1;155 11:1291-1299.
+#' doi: 10.1001/jamadermatol.2019.1375. PMID: 31215969; PMCID: PMC6584889.
+#'
+#' @keywords datasets
+
+NULL
+
 
 #' Systematic review which compares the accuracy of HbA1c vs
-#' FPG in deabetes
+#' FPG in diabetes
 #'
 #' This data frame contains results of diagnostic accuraccy of 38 studies
 #' which reported comparison of sensitivity and specificity between
@@ -51,7 +88,7 @@ NULL
 #'
 #' @docType data
 #'
-#' @description This data frame contains results of diagnostic accuraccy of 38 studies which reported comparison of sensitivity and specificity between HbA1c vs FPG in a population based screening for type 2 diabetes.
+#' @description This data frame contains results of diagnostic accuracy of 38 studies which reported comparison of sensitivity and specificity between HbA1c vs FPG in a population based screening for type 2 diabetes.
 #'
 #' @format  A data frame with 38 rows and 9 columns. Each row represents study results, the columns are:
 #'
@@ -368,4 +405,6 @@ NULL
 #'
 #'@keywords datasets
 NULL
+
+
 

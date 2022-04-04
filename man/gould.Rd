@@ -5,7 +5,8 @@
 \alias{gould}
 \title{Accuracy of Positron Emission Tomography for Diagnosis of Pulmonary
 Nodules and Mass Lesions}
-\format{A matrix with 31 rows and 6 columns. Each row represents study
+\format{
+A matrix with 31 rows and 6 columns. Each row represents study
 results, the columns are:
 
 \describe{
@@ -15,7 +16,8 @@ results, the columns are:
 \item{n2}{number of patients without disease.}
 \item{author}{first author of the study.}
 \item{year}{publication date.}
-}}
+}
+}
 \source{
 The data were obtainded from
 

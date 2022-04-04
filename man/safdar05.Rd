@@ -4,7 +4,8 @@
 \name{safdar05}
 \alias{safdar05}
 \title{Diagnosis of Intravascular Device-Related Bloodstream Infection}
-\format{A matrix with 78 rows and 8 columns. Each row represents study
+\format{
+A matrix with 78 rows and 8 columns. Each row represents study
 results, the columns are:
 \describe{
 \item{tp}{number of true positives.}
@@ -15,7 +16,8 @@ results, the columns are:
 \item{year}{publication date.}
 \item{technique}{diagnostic technique used in the study.}
 \item{duration}{duration of catheterization: short term or long term or both.}
-}}
+}
+}
 \source{
 The data were obtained from
 

@@ -4,7 +4,8 @@
 \name{glas}
 \alias{glas}
 \title{Tumor markers in the diagnosis of primary bladder cancer.}
-\format{A matrix with 46 rows and 7 columns. Each row represents study
+\format{
+A matrix with 46 rows and 7 columns. Each row represents study
 results, the columns are:
 
 \describe{
@@ -15,7 +16,8 @@ results, the columns are:
 \item{author}{first author of the study.}
 \item{cutoff}{cutoff in U/ml.}
  \item{marker}{test method used in the study.}
- }}
+ }
+}
 \source{
 The data were obtained from
 
