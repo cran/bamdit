@@ -33,7 +33,7 @@
 #'                        \emph{logit}, \emph{cloglog} \emph{probit}.
 #'
 #' @param re.model        If re.model = "DS" indicates that the sum and differences of TPR and FPR are modeled as random effects and re.model = "SeSp" indicates that the Sensitivity and Specificity are modeled as ranodm effects.
-#'                        The defualt value is re.model = "DS".
+#'                        The default value is re.model = "DS".
 #'
 #' @param mean.mu.D prior Mean of D, default value is 0.
 #'
@@ -69,9 +69,9 @@
 #'
 #' @param nr.iterations   Number of iterations after adapting the MCMC, default is 10000. Some models may need more iterations.
 #'
-#' @param nr.adapt        Number of iterations in the adaptation process, defualt is 1000. Some models may need more iterations during adptation.
+#' @param nr.adapt        Number of iterations in the adaptation process, default is 1000. Some models may need more iterations during adaptation.
 #'
-#' @param nr.burnin       Number of iteration discared for burnin period, default is 1000. Some models may need a longer burnin period.
+#' @param nr.burnin       Number of iteration discard for burn-in period, default is 1000. Some models may need a longer burnin period.
 #'
 #' @param nr.thin         Thinning rate, it must be a positive integer, the default value 1.
 #'
@@ -464,7 +464,8 @@ if(!link.test)stop("This link function is not implemented")
 	N <- length(n1)
 
   # Data errors
-  if(tp>n1 || fp>n2)stop("the data is inconsistent")
+  if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")
+
   if(missing(data))stop("NAs are not alow in this function")
 
 	# Statistical warning!

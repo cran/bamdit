@@ -70,6 +70,8 @@ summary.metadiag = function(object, digits = 3, ...) {
   #return(summary.m)
 }
 
+#' @export
+#'
 print.summary.metadiag = function(x, digits, ...) {
   cat('Model specification:\n')
   model.spec = x$model.specification

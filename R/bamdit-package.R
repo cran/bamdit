@@ -15,14 +15,14 @@
 #' \tabular{ll}{
 #' Package: \tab bamdit    \cr
 #' Type: \tab Package      \cr
-#' Version: \tab 3.4.0     \cr
-#' Date: \tab 2022-04-04  \cr
+#' Version: \tab 3.4.1    \cr
+#' Date: \tab 2024-07-12  \cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr }
 #'
-#' @name bamdit-package
+#'
 #' @aliases bamdit-package bamdit
-#' @docType package
+"_PACKAGE"
 #'
 #' @author PD Dr. Pablo Emilio Verde \email{pabloemilio.verde@@hhu.de}
 #'
@@ -35,8 +35,6 @@
 #'
 #' @keywords Meta-Analysis Outliers ROC Sensitivity Specificity MCMC JAGS AUC
 #'
-#'
-
 NULL
 
 #' Accuracy of Computer-Aided Diagnosis of Melanoma: A Meta-analysis.
@@ -64,6 +62,41 @@ NULL
 #' \item{"SAMPLE_SELECTION_AP}{QUADAS-2, Patient selection bias.}
 #' \item{"INDEX_TEST_AP"}{QUADAS-2, Index test description/application bias.}
 #' \item{"REFERENCE_STANDARD_AP"}{QUADAS-2, Reference standard bias.}
+#' }
+#'
+#' @source The data were obtained from
+#'
+#' Dick V, Sinz C, Mittlböck M, Kittler H, Tschandl P. Accuracy of Computer-Aided Diagnosis of Melanoma:
+#' A Meta-analysis. JAMA Dermatol. 2019 Nov 1;155 11:1291-1299.
+#' doi: 10.1001/jamadermatol.2019.1375. PMID: 31215969; PMCID: PMC6584889.
+#'
+#' @keywords datasets
+
+NULL
+
+
+#' Accuracy of Computer-Aided Diagnosis of Melanoma: A Comparative Meta-analysis.
+#'
+#' @name skin2
+#'
+#' @docType data
+#'
+#' @description This data frame contains results 14 comparative diagnostic studies: CAD vs Dermatologists
+#'
+#' @format A matrix with 14 rows and 12 columns. Each row represents a study's results, the columns are:
+#' \describe{
+#' \item{"study"}{Study name and year}
+#' \item{"TP_CAD"}{number of true positives CAD.}
+#' \item{"TN_CAD"}{number of ture negatives CAD.}
+#' \item{"FP_CAD"}{number of false positives CAD.}
+#' \item{"FN_CAD"}{number of false negative CAD.}
+#' \item{"TP_Dermatologists"}{number of true positives Dermatologists.}
+#' \item{"TN_Dermatologists"}{number of ture negatives Dermatologists.}
+#' \item{"FP_Dermatologists"}{number of false positives Dermatologists.}
+#' \item{"FN_Dermatologists"}{number of false negative Dermatologists.}
+#' \item{"test_set_source"}{The database was public domain or propietary.}
+#' \item{"cad_method"}{Computer-Aided Diagnostic Technique: computer vision; deep learning or hardware-based.}
+#' \item{"test_set_independent"}{yes or no.}
 #' }
 #'
 #' @source The data were obtained from

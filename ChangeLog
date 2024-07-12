@@ -1,6 +1,17 @@
 bamdit ChangeLog
 
-Commitments for the next version
+Version 3.4.1 -- July 2024
+
+  * Data checks in metadiag() function: I changed
+  "if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")".
+
+   In these changes avoid an error generated for R>= 4.2.0 when comparing
+   vectors within the if().
+
+  * Plot function plot.metadiag() allows to plot credibility contours.
+
+
+Commitments for the next version 3.5.0 -- Summer 2024
 
  * New function "bforest" for forest plot of posteriors of
   sensitivity and specificity.
@@ -13,13 +24,18 @@ Commitments for the next version
 
  * Implement diagnostic functions and depreciate the weights plots
 
-Version 3.3.4 -- March 2022
+Version 3.4.1 -- April 2022
 
- * New function "hyper.posterior" matrix-plot for posteriors of hyper parameters.
+  * Plot function plot.metadiag() allows to plot credibility contours.
+
+
+
+Version 3.4.0 -- March 2022
+
+  * New "summary" function for metadiag().
 
 Version 3.3.3 -- August 2021
 
-  * New "summary" function for metadiag().
   * The default option for re.model = "SeSp".
   * New argument "jag.seed" to make results replicable in metadiag().
   * New warning message from "metadiag()" when the number of studies is less than 6.
@@ -29,7 +45,6 @@ Version 3.3.2 -- November 2020
   * Function "metadiag()": the argument "r2jags" has been depreciated.
   * Several bugs in ploting functions had been fixed.
   * New data frame "skin" for deep-learning diagnostic tests.
-
 
 Version 3.3.1 -- July 2019
   * Some keywords are replaced.

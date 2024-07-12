@@ -47,7 +47,7 @@ TP, FP, TN, FN.}
 values are \emph{normal} for bivariate random effects and \emph{sm} for scale mixtures.}
 
 \item{re.model}{If re.model = "DS" indicates that the sum and differences of TPR and FPR are modeled as random effects and re.model = "SeSp" indicates that the Sensitivity and Specificity are modeled as ranodm effects.
-The defualt value is re.model = "DS".}
+The default value is re.model = "DS".}
 
 \item{link}{The link function used in the model. Possible values are
 \emph{logit}, \emph{cloglog} \emph{probit}.}
@@ -86,9 +86,9 @@ The defualt value is re.model = "DS".}
 
 \item{nr.iterations}{Number of iterations after adapting the MCMC, default is 10000. Some models may need more iterations.}
 
-\item{nr.adapt}{Number of iterations in the adaptation process, defualt is 1000. Some models may need more iterations during adptation.}
+\item{nr.adapt}{Number of iterations in the adaptation process, default is 1000. Some models may need more iterations during adaptation.}
 
-\item{nr.burnin}{Number of iteration discared for burnin period, default is 1000. Some models may need a longer burnin period.}
+\item{nr.burnin}{Number of iteration discard for burn-in period, default is 1000. Some models may need a longer burnin period.}
 
 \item{nr.thin}{Thinning rate, it must be a positive integer, the default value 1.}
 
