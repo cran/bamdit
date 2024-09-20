@@ -1,13 +1,13 @@
 abad8af417ddda20a0f418c9f039abe4 *ChangeLog
-8a44b3e4bd61dd0651e5e4596be37369 *DESCRIPTION
+01de3bff1d8eee18c1cf3a93d54631a3 *DESCRIPTION
 5dee821e1056388324378de1a7ccd1f7 *NAMESPACE
-cc9b6ef326d97e523a181d2d095a34a8 *R/bamdit-package.R
-c55e0c12f90b3dd69847f7b6ffc364c3 *R/bsroc.R
+43dc1a5a033ec264d82d9bb63a8d296d *R/bamdit-package.R
+6194d3b7f189b3c2364c566b797efd0b *R/bsroc.R
 940c5618b0a1ddbb1a0b1c152c38cfaf *R/metadiag.R
 b54810d755abcc31630c2d1303117f93 *R/plot.metadiag.R
 a6332451783cc1f6f6ce82848c3464a1 *R/plotcompare.R
 ec3ada8b51f624f0a61106106a76309e *R/plotcredibility.R
-b90efe20fc999946051c935f15f6fe1e *R/plotdata.R
+a55fdfe695206992b5a04fc2e3edbb7f *R/plotdata.R
 b21b33a6f46af23dc56ceb721ac4c690 *R/plotsesp.R
 a2f6ea7588c9c5c936601be82670b318 *R/plotw.R
 6692ff42d1a025572155caf9a2b8717f *R/print.metadiag.R
@@ -24,7 +24,7 @@ d32714371204766aa2d50df8fceb5b3f *data/gould.rda
 88b9f10a270c78d1d1ab72c06d52957a *data/skin.rda
 02101f2085d519e012bd65a5d0643a4d *data/skin2.rda
 a4a715821c77624b60158b9a041c48c5 *inst/CITATION
-86333b80821eab505ac3f419e4a86869 *man/bamdit-package.Rd
+ef3df686b2e3b6137ceb11ca36ace4d1 *man/bamdit-package.Rd
 2adecac7cb888a38a5bb85538a0f5482 *man/bsroc.Rd
 e22d12f8c43d6d7a85e3553bc9168d7d *man/ct.Rd
 0300b814548427dc4660c0ad1d075b67 *man/diabetes.Rd

@@ -15,8 +15,8 @@
 #' \tabular{ll}{
 #' Package: \tab bamdit    \cr
 #' Type: \tab Package      \cr
-#' Version: \tab 3.4.1    \cr
-#' Date: \tab 2024-07-12  \cr
+#' Version: \tab 3.4.2    \cr
+#' Date: \tab 2024-09-20  \cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr }
 #'
