@@ -109,6 +109,7 @@ bsroc <- function(m,
   # Data errors
   if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")
 
+
   if(!missing(data)){
     tpr <- tp / n1
     fpr <- fp / n2

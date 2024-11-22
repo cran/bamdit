@@ -110,7 +110,8 @@ link2 <- m2$link
     n2 <- fp + tn
   }
 
-  if(tp>n1 || fp>n2)stop("the data is inconsistent")
+  # Data errors
+  if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")
 
   if(!missing(data)){
     tpr <-  tp / n1

@@ -1,5 +1,19 @@
 bamdit ChangeLog
 
+Version 3.4.3 -- November 2024
+
+  * Further checks and corrections: I changed
+
+  "if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")"
+
+  in all functions.
+
+Version 3.4.2 -- September 2024
+
+ * Data checks in bsroc() function: I changed
+  "if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")".
+
+
 Version 3.4.1 -- July 2024
 
   * Data checks in metadiag() function: I changed
