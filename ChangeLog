@@ -1,5 +1,11 @@
 bamdit ChangeLog
 
+
+Version 3.4.4 -- February 2025
+
+  * Since R2jags version> 0.8-9, the pD must be specified when running the model.
+    The metadiag() function runs always with jags(..., pD = TRUE)
+
 Version 3.4.3 -- November 2024
 
   * Further checks and corrections: I changed

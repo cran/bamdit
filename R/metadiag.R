@@ -1441,8 +1441,9 @@ if(r2jags == TRUE){
                             n.chains = nr.chains,
                               n.iter = nr.iterations,
                             n.burnin = nr.burnin,
-                              n.thin = nr.thin
-                       )
+                              n.thin = nr.thin,
+                                  pD = TRUE  # R2jags version > 0.8-9
+                  ) # The pD must be specified when running the model.
   }
   else {
   # Use rjags as interface for JAGS ...

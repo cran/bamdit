@@ -1,9 +1,9 @@
-576f878641bdf6060dfc25a58c8b9cfa *ChangeLog
-28ba9fe92ba8ec2bc709f451a28315ce *DESCRIPTION
+03104f996ce0c787e476455306db00c0 *ChangeLog
+d78c12cf91e05921aad028de07bff28b *DESCRIPTION
 5dee821e1056388324378de1a7ccd1f7 *NAMESPACE
 43dc1a5a033ec264d82d9bb63a8d296d *R/bamdit-package.R
 7cd3bc7bc3cef22ddac65a81d4c66e76 *R/bsroc.R
-940c5618b0a1ddbb1a0b1c152c38cfaf *R/metadiag.R
+5bcc7b13491b12c870e8799277cad8bc *R/metadiag.R
 ea3991708140956f2a705cd22938eabc *R/plot.metadiag.R
 f85c9e3dfcfc2669b581fd891e249431 *R/plotcompare.R
 37157035ea62adb0999bd493fccfd462 *R/plotcredibility.R
