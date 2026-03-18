@@ -13,7 +13,9 @@ plotdata(
   y.lo = 0,
   y.up = 1,
   alpha.p = 0.7,
-  max.size = 15
+  max.size = 15,
+  points.color = "royalblue",
+  group.colors = NULL
 )
 }
 \arguments{
@@ -38,6 +40,11 @@ TP, FP, TN, FN.}
 \item{alpha.p}{transparency of the points}
 
 \item{max.size}{scale parameter of the maximum size}
+
+\item{points.color}{color of the points when no grouping variable is provided (default = "royalblue")}
+
+\item{group.colors}{optional vector of colors for groups. If fewer colors than groups are provided,
+the function will automatically generate additional colors using interpolation.}
 }
 \description{
 This function plots the true positive rates vs the false positive rates of each study included

@@ -19,6 +19,9 @@
 #' @param y.up upper limit of the y-axis
 #' @param alpha.p transparency of the points
 #' @param max.size scale parameter of the maximum size
+#' @param points.color color of the points when no grouping variable is provided (default = "royalblue")
+#' @param group.colors optional vector of colors for groups. If fewer colors than groups are provided,
+#' the function will automatically generate additional colors using interpolation.
 #'
 #' @examples
 #'
@@ -39,64 +42,84 @@
 #'
 #'
 #' @import ggplot2
-
-
-#'@export
+#' @export
 plotdata <- function(data,
                      two.by.two = FALSE,
-                           group = NULL,
+                     group = NULL,
                      x.lo = 0, x.up = 1,
                      y.lo = 0, y.up = 1,
                      alpha.p = 0.7,
-                     max.size = 15)
-{
+                     max.size = 15,
+                     points.color = "royalblue",
+                     group.colors = NULL)
+{ gr=NULL
   if(two.by.two == FALSE)
-    {
-  tp <- data[,1]
-  n1 <- data[,2]
-  fp <- data[,3]
-  n2 <- data[,4]
+  {
+    tp <- data[,1]
+    n1 <- data[,2]
+    fp <- data[,3]
+    n2 <- data[,4]
   } else
-    {
-      tp <- data$TP
-      fp <- data$FP
-      fn <- data$FN
-      tn <- data$TN
-      n1 <- tp + fn
-      n2 <- fp + tn
-    }
-
+  {
+    tp <- data$TP
+    fp <- data$FP
+    fn <- data$FN
+    tn <- data$TN
+    n1 <- tp + fn
+    n2 <- fp + tn
+  }
 
   # Data errors
-  if(any(tp>n1) || any(fp>n2))stop("the data is inconsistent")
+  if(any(tp > n1) || any(fp > n2)) stop("the data is inconsistent")
 
   if(!missing(data)){
-    tpr <-  tp / n1
-    fpr <-  fp / n2
+    tpr <- tp / n1
+    fpr <- fp / n2
     n <- n1 + n2
-  }else
+  } else {
     stop("NAs are not alow in this plot function")
+  }
 
+  # ---- Build plotting data ----
   if(is.null(group)){
+    dat.plot <- data.frame(tpr, fpr, n)
+  } else {
+    dat.plot <- data.frame(tpr, fpr, n, gr = data[[group]])
+  }
 
-    dat.plot = data.frame(tpr, fpr, n)
-    }
-  else{
-    dat.plot = data.frame(tpr, fpr, n, gr=data[, group])
-    }
-
-
+  # ---- Plot with grouping ----
   if(!is.null(group)){
-    ggplot(dat.plot, aes_string(x = "fpr", y = "tpr", size = "n", group = "gr"))+
-      scale_x_continuous(name = "FPR (1 - Specificity)", limits=c(x.lo, x.up)) +
-      scale_y_continuous(name = "TPR (Sensitivity)", limits=c(y.lo, y.up)) +
-      geom_point(shape = 21, alpha = alpha.p, aes_string(fill = "gr", size = "n")) +
+
+    p <- ggplot(dat.plot, aes(x = fpr, y = tpr, size = n, fill = gr)) +
+      scale_x_continuous(name = "FPR (1 - Specificity)", limits = c(x.lo, x.up)) +
+      scale_y_continuous(name = "TPR (Sensitivity)", limits = c(y.lo, y.up)) +
+      geom_point(shape = 21, alpha = alpha.p) +
       scale_size_area(max_size = max.size)
-  }else{
-    ggplot(dat.plot, aes_string(x = "fpr", y = "tpr", size = "n"))+
-      scale_x_continuous(name = "FPR (1 - Specificity)", limits=c(x.lo, x.up)) +
-      scale_y_continuous(name = "TPR (Sensitivity)", limits=c(y.lo, y.up)) +
-      geom_point(shape = 21, fill ="royalblue", alpha = alpha.p) +
+
+    # ---- Apply custom group colors if provided ----
+    if(!is.null(group.colors)){
+
+      n_groups <- length(unique(dat.plot$gr))
+
+      # If fewer colors than groups, interpolate additional colors
+      if(length(group.colors) < n_groups){
+        group.colors <- grDevices::colorRampPalette(group.colors)(n_groups)
+      } else {
+        group.colors <- group.colors[seq_len(n_groups)]
+      }
+
+      p <- p + scale_fill_manual(values = group.colors)
+    }
+
+    return(p)
+
+  } else {
+
+    # ---- Plot without grouping ----
+    ggplot(dat.plot, aes(x = fpr, y = tpr, size = n)) +
+      scale_x_continuous(name = "FPR (1 - Specificity)", limits = c(x.lo, x.up)) +
+      scale_y_continuous(name = "TPR (Sensitivity)", limits = c(y.lo, y.up)) +
+      geom_point(shape = 21, fill = points.color, alpha = alpha.p) +
       scale_size_area(max_size = max.size)
   }
 }

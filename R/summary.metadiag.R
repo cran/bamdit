@@ -49,7 +49,7 @@ summary.metadiag = function(object, digits = 3, ...) {
 
   summary.m$summary.expected.accuracy = rbind(bugs.summary["se.pool",],
                                               bugs.summary["sp.pool",])
-  row.names(summary.m$summary.expected.accuracy) = c("se.pool", "sp.pool")
+  row.names(summary.m$summary.expected.accuracy) = c("se.pooled", "sp.pooled")
 
   summary.m$summary.pred.expected.accuracy = rbind(bugs.summary["se.new",],
                                                    bugs.summary["sp.new",])

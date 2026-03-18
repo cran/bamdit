@@ -543,7 +543,10 @@ if(!link.test)stop("This link function is not implemented")
             parameters.model <- c(parameters.model[], "w1", "w2", "p.w1", "p.w2")
 	      else
           if(re=="sm" & split.w == FALSE & df.estimate == TRUE)
-            parameters.model <- c(parameters.model, "w", "p.w", "df")
+            parameters.model <- c(parameters.model[], "w", "p.w", "df")
+	      else
+	        if(re=="sm" & split.w == FALSE & df.estimate == FALSE)
+	          parameters.model <- c(parameters.model[], "w", "p.w")
 
 
 # Model construction
@@ -560,6 +563,7 @@ inits.model <- list(mu.D = 0,
 blueprint <- function(link = "logit", re = "normal", re.model = "DS", split.w = FALSE, df.estimate = FALSE)
 {
 
+   if(split.w == FALSE & df.estimate == TRUE ) re <- "sm"
    if(split.w == FALSE & df.estimate == TRUE ) re <- "sm.df"
    if(split.w == TRUE  & df.estimate == FALSE) re <- "sm.split"
    if(split.w == TRUE  & df.estimate == TRUE ) re <- "sm.split.df"
